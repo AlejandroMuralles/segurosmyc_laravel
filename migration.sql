@@ -1,4 +1,28 @@
-
+DELETE FROM segurosmycdb.poliza_modificacion_detalle;
+DELETE FROM segurosmycdb.poliza_modificacion;
+DELETE FROM segurosmycdb.pago_requerimiento;
+DELETE FROM segurosmycdb.pago;
+DELETE FROM segurosmycdb.porcentaje_fraccionamiento_aseguradora;
+DELETE FROM segurosmycdb.porcentaje_fraccionamiento_general;
+DELETE FROM segurosmycdb.rubro;
+DELETE FROM segurosmycdb.poliza_ubicacion;
+DELETE FROM segurosmycdb.poliza_declaracion_hidrocarburo;
+DELETE FROM segurosmycdb.poliza_reclamo_detalle;
+DELETE FROM segurosmycdb.poliza_vehiculo_reclamo;
+DELETE FROM segurosmycdb.poliza_requerimiento;
+DELETE FROM segurosmycdb.poliza_declaracion_vehiculo;
+DELETE FROM segurosmycdb.poliza_declaracion;
+DELETE FROM segurosmycdb.poliza_cobertura_vehiculo;
+DELETE FROM segurosmycdb.planilla;
+DELETE FROM segurosmycdb.poliza_vehiculo;
+DELETE FROM segurosmycdb.poliza_cobertura;
+DELETE FROM segurosmycdb.poliza_exclusion;
+DELETE FROM segurosmycdb.poliza_inclusion;
+UPDATE segurosmycdb.poliza SET poliza_anterior_id = null;
+DELETE FROM segurosmycdb.poliza;
+DELETE FROM segurosmycdb.contacto_cliente;
+DELETE FROM segurosmycdb.contacto_aseguradora;
+DELETE FROM segurosmycdb.cliente;
 DELETE FROM segurosmycdb.vista;
 DELETE FROM segurosmycdb.vehiculo;
 DELETE FROM segurosmycdb.tipo_vehiculo;
@@ -165,3 +189,31 @@ SELECT * FROM segurosmyc.poliza_vehiculo_reclamo;
 
 INSERT INTO segurosmycdb.poliza_reclamo_detalle
 SELECT * FROM segurosmyc.poliza_reclamo_detalle;
+
+INSERT INTO segurosmycdb.poliza_declaracion_hidrocarburo
+SELECT * FROM segurosmyc.poliza_declaracion_hidrocarburo;
+
+INSERT INTO segurosmycdb.poliza_ubicacion
+SELECT * FROM segurosmyc.poliza_ubicacion;
+
+INSERT INTO segurosmycdb.rubro
+SELECT * FROM segurosmyc.rubro;
+
+INSERT INTO segurosmycdb.porcentaje_fraccionamiento_general
+SELECT id,cantidad_pagos,porcentaje,now(),now(),user_created,user_updated
+FROM segurosmyc.porcentaje_fraccionamiento_general;
+
+INSERT INTO segurosmycdb.porcentaje_fraccionamiento_aseguradora
+SELECT * FROM segurosmyc.porcentaje_fraccionamiento_aseguradora;
+
+INSERT INTO segurosmycdb.pago
+SELECT * FROM segurosmyc.pago;
+
+INSERT INTO segurosmycdb.pago_requerimiento
+SELECT * FROM segurosmyc.pago_requerimiento;
+
+INSERT INTO segurosmycdb.poliza_modificacion
+SELECT * FROM segurosmyc.poliza_modificacion;
+
+INSERT INTO segurosmycdb.poliza_modificacion_detalle
+SELECT * FROM segurosmyc.poliza_modificacion_detalle;

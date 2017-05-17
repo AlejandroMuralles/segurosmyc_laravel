@@ -1,4 +1,7 @@
 /*PROPIOS*/
+.btn{
+  border-radius: initial;
+}
 
 .has-error{
   border: 2px solid red;

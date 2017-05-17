@@ -44,6 +44,7 @@ class AdminMenuController {
 		$subMenu->push((object)['title' => 'Países', 'url' => URL::route('paises')]);
 		$subMenu->push((object)['title' => 'Porcentajes de Fraccionamiento Generales', 'url' => URL::route('porcentajes_fraccionamientos_generales')]);
 		$subMenu->push((object)['title' => 'Ramos', 'url' => URL::route('ramos')]);
+		$subMenu->push((object)['title' => 'Rubros', 'url' => URL::route('rubros')]);
 		$subMenu->push((object)['title' => 'Tipos de Vehículo', 'url' => URL::route('tipos_vehiculos')]);
 		$subMenu->push((object)['title' => 'Vehículos', 'url' => URL::route('vehiculos')]);
 		$menu->push((object)['title' => 'Catálogos', 'url' => '#', 'subMenu'=> $subMenu, 'icon'=>'fa fa-users']);

@@ -17,7 +17,7 @@ class CrearTablaPolizaVehiculo extends Migration
             $table->increments('id');
             $table->integer('vehiculo_id')->unsigned();
             $table->integer('poliza_id')->unsigned();
-            $table->string('numero_certificado',50);
+            $table->string('numero_certificado',50)->nullable();
             $table->double('prima_neta');
             $table->double('suma_asegurada');
             $table->double('suma_asegurada_blindaje')->nullable();
@@ -40,7 +40,7 @@ class CrearTablaPolizaVehiculo extends Migration
             $table->string('estado',2);
             $table->integer('motivo_anulacion_id')->unsigned()->nullable();
             $table->datetime('fecha_anulacion')->nullable();
-            $table->string('activo_declaracion',1);
+            $table->string('activo_declaracion',1)->nullable();
             $table->integer('cliente_id')->unsigned()->nullable();
             $table->timestamps();
             $table->string('created_by',45);
