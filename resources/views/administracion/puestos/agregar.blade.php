@@ -22,6 +22,8 @@
 
 					{!! Field::select('area_id', $areas, '', ['data-required'=>'true']) !!}
 
+					{!! Field::select('estado', $estados, '', ['data-required'=>'true']) !!}
+
 					<br/>
 
 		            <p>

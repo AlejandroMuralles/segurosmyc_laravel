@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Controller, Redirect, Input, Auth, View, Session;
+use Controller, Redirect, Input, Auth, View, Session, Variable;
 
 use App\App\Entities\Puesto;
 use App\App\Repositories\PuestoRepo;
@@ -30,7 +30,8 @@ class PuestoController extends BaseController {
 
 	public function mostrarAgregar(){
 		$areas = $this->areaRepo->lists('nombre','id');
-		return View::make('administracion/puestos/agregar', compact('areas'));
+		$estados = Variable::getEstadosGenerales();
+		return View::make('administracion/puestos/agregar', compact('areas','estados'));
 	}
 
 	public function agregar()
@@ -44,7 +45,8 @@ class PuestoController extends BaseController {
 	public function mostrarEditar($id){
 		$areas = $this->areaRepo->lists('nombre','id');
 		$puesto = $this->puestoRepo->find($id);
-		return View::make('administracion/puestos/editar', compact('puesto', 'areas'));
+		$estados = Variable::getEstadosGenerales();
+		return View::make('administracion/puestos/editar', compact('puesto', 'areas','estados'));
 	}
 
 	public function editar($id)
