@@ -60,11 +60,7 @@
 				</div>
            		<br/>
 
-				{!! Field::select('area', $areas, $colaborador->puesto->area->id, ['id'=>'area']) !!}
-
 				{!! Field::select('puesto_id', $puestos, null, ['id'=>'puesto_id', 'data-required'=>'true']) !!}
-
-				{!! Field::checkbox('contratado') !!}
 
 				{!! Field::file('imagen') !!}
 
@@ -101,30 +97,6 @@
 			minuteStep: 30,
 			defaultTime: '{{date("H:i",strtotime($colaborador->horario_entrada))}}'
 		});
-
-		$('#area').on('change', function()
-    	{
-    		$.ajax({
-				url: "{{ route('inicio') }}/ajax/puestos/" + $('#area').val(),
-			  	dataType: "json",
-			  	success: function(data) {
-				    var name, select, option;
-
-				    // Get the raw DOM object for the select box
-				    select = document.getElementById('puesto_id');
-
-				    // Clear the old options
-				    select.options.length = 0;
-				    select.options.add(new Option('Seleccione', ''));
-				    // Load the new options
-				    for (name in data) {
-				      if (data.hasOwnProperty(name)) {
-				        select.options.add(new Option(data[name], name));
-				      }
-				    }
-				}
-			});
-    	});
     });
 </script>
 @stop

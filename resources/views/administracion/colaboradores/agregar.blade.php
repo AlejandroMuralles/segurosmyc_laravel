@@ -60,8 +60,6 @@
 
 				{!! Field::select('puesto_id', $puestos, null, ['data-required'=>'true']) !!}
 
-				{!! Field::checkbox('contratado') !!}
-
 				{!! Field::file('imagen') !!}
 	            
 				<br/>

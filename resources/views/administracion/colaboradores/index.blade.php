@@ -21,7 +21,7 @@
 								<th>NOMBRE</th>
 								<th>PUESTO</th>
 								<th>AREA</th>
-								<th>CONTRATADO</th>
+								<th>ESTADO</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -31,13 +31,7 @@
 									<td>{{ $colaborador->nombres }} {{ $colaborador->apellidos }} </td>
 									<td>{{ $colaborador->puesto->nombre }}</td>
 									<td>{{ $colaborador->puesto->area->nombre }}</td>
-									<td style="text-align: center">
-										@if($colaborador->contratado)
-											<i class="fa fa-check"></i>
-										@else
-											<i class="fa fa-times"></i>
-										@endif
-									</td>
+									<td>{{ $colaborador->descripcion_estado}} </td>
 									<td>
 										<a href="{{route('editar_colaborador',$colaborador->id)}}" class="btn btn-warning btn-xs fa fa-edit"></a>
 										<a href="{{route('ver_colaborador',$colaborador->id)}}" class="btn btn-warning btn-xs fa fa-eye"></a>
