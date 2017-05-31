@@ -20,6 +20,7 @@
 						<tr>
 							<th>NOMBRE</th>
 							<th>AREA</th>
+							<th>ESTADO</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -28,6 +29,7 @@
 							<tr>
 								<td>{{ $puesto->nombre }}</td>									
 								<td>{{ $puesto->area->nombre }}</td>
+								<td>{{ $puesto->descripcion_estado }}</td>
 								<td>
 									<a href="{{route('editar_puesto',$puesto->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></a>
 								</td>
