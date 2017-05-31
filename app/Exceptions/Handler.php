@@ -44,6 +44,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof ModelNotFoundException) {
+            $exception = new NotFoundHttpException($exception->getMessage(), $exception);
+        }
+        if ($exception instanceof \App\App\Managers\ValidationException) {
+            return Redirect::back()->withInput()->withErrors($exception->getErrors());
+        }
+        if ($exception instanceof \App\App\Managers\SaveDataException) {
+            Session::flash('error', $exception->getException()->getMessage());
+            return Redirect::back()->withInput()->withErrors($exception->getException()->getMessage());
+        }
         return parent::render($request, $exception);
     }
 
