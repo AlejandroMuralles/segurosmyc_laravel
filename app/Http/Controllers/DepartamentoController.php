@@ -62,7 +62,7 @@ class DepartamentoController extends BaseController {
 
 	public function ajaxByPais($paisId)
 	{
-		$departamentos = $this->departamentoRepo->getByPais($paisId)->lists('nombre','id');
+		$departamentos = $this->departamentoRepo->getByPais($paisId)->pluck('nombre','id');
 		return json_encode($departamentos);
 	}
 }

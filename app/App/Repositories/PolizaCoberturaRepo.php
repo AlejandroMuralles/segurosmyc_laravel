@@ -36,7 +36,7 @@ class PolizaCoberturaRepo extends BaseRepo{
 	{
 		$ids = \DB::table('poliza_cobertura')
 					->where('poliza_id', '=', $polizaId)
-					->lists('cobertura_id');
+					->pluck('cobertura_id');
     	return Cobertura::whereNotIn('id', $ids)->orderBy('nombre')->get();
 	}
 

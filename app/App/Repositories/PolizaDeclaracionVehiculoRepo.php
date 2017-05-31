@@ -19,14 +19,14 @@ class PolizaDeclaracionVehiculoRepo extends BaseRepo{
 
 	public function getByPolizaNotInDeclaracion($polizaId, $polizaDeclaracionId)
 	{
-		$ids = \DB::table('poliza_declaracion_vehiculo')->where('poliza_declaracion_id',$polizaDeclaracionId)->lists('poliza_vehiculo_id');
+		$ids = \DB::table('poliza_declaracion_vehiculo')->where('poliza_declaracion_id',$polizaDeclaracionId)->pluck('poliza_vehiculo_id');
 		$vehiculos = PolizaVehiculo::where('poliza_id',$polizaId)->whereNotIn('id',$ids)->with('vehiculo')->get();
 		return $vehiculos;
 	}
 
 	public function getByPolizaNotInDeclaracionByEstado($polizaId, $polizaDeclaracionId, $estados)
 	{
-		$ids = \DB::table('poliza_declaracion_vehiculo')->where('poliza_declaracion_id',$polizaDeclaracionId)->lists('poliza_vehiculo_id');
+		$ids = \DB::table('poliza_declaracion_vehiculo')->where('poliza_declaracion_id',$polizaDeclaracionId)->pluck('poliza_vehiculo_id');
 		$vehiculos = PolizaVehiculo::where('poliza_id',$polizaId)->whereNotIn('id',$ids)->whereIn('estado',$estados)->with('vehiculo')->get();
 		return $vehiculos;
 	}

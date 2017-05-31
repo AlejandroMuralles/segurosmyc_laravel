@@ -46,7 +46,7 @@ class PolizaVehiculoRepo extends BaseRepo{
 	{
 		$ids = \DB::table('poliza_vehiculo')
 					->where('poliza_id',$polizaId)
-					->lists('vehiculo_id');
+					->pluck('vehiculo_id');
     	return Vehiculo::whereNotIn('id', $ids)->orderBy('placa')->get();
 	}
 

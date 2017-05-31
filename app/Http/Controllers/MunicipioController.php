@@ -62,7 +62,7 @@ class MunicipioController extends BaseController {
 
 	public function ajaxByDepartamento($departamentoId)
 	{
-		$municipios = $this->municipioRepo->getByDepartamento($departamentoId)->lists('nombre','id');
+		$municipios = $this->municipioRepo->getByDepartamento($departamentoId)->pluck('nombre','id');
 		return json_encode($municipios);
 	}
 }

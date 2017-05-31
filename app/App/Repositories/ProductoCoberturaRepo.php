@@ -25,7 +25,7 @@ class ProductoCoberturaRepo extends BaseRepo{
 	{
 		$ids = ProductoCobertura::where('producto_id','=',$productoId)
 									->select('cobertura_id')
-									->lists('cobertura_id');
+									->pluck('cobertura_id');
 		return Cobertura::whereNotIn('id',$ids)
 								->orderBy('nombre')
 								->get(); 
