@@ -28,8 +28,8 @@
 
 				<div class="form-group">
 					<label for="sexo">Sexo</label><br/>
-					<input type="radio" name="sexo" value="F" @if($colaborador->sexo == F) checked @endif> Femenino</input>&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="sexo" value="M" @if($colaborador->sexo == M) checked @endif> Masculino</input>
+					<input type="radio" name="sexo" value="F" @if($colaborador->sexo == 'F') checked @endif> Femenino</input>&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="sexo" value="M" @if($colaborador->sexo == 'M') checked @endif> Masculino</input>
 				</div>
 
 				<div class="row">
