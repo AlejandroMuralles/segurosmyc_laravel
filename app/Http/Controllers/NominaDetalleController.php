@@ -9,7 +9,7 @@ use App\App\Managers\NominaDetalleManager;
 
 use App\App\Repositories\NominaRepo;
 
-class NominaController extends BaseController {
+class NominaDetalleController extends BaseController {
 
 	protected $nominaDetalleRepo;
 	protected $nominaRepo;
