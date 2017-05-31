@@ -13,7 +13,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('cambiar-contrasena', ['as' => 'cambiar_password', 'uses' => 'UserController@cambiarPassword']);
 
 	/* ADMINISTRACION */
-	Route::get('Administracion/dashboard', ['as' => 'dashboard', 'uses' => 'AdminController@mostrarDashboard']);
+	Route::get('dashboard','AdminController@mostrarDashboard')->name('dashboard');
 	/* RECURSOS HUMANOS */
 	Route::get('Colaboradores/listado', ['as' => 'colaboradores', 'uses' => 'ColaboradorController@listado']);
 	Route::get('Colaboradores/agregar/', ['as' => 'agregar_colaborador', 'uses' => 'ColaboradorController@mostrarAgregar']);

@@ -6,6 +6,7 @@ use Variable;
 use App\App\Repositories\PolizaCoberturaVehiculoRepo;
 
 class PolizaVehiculo extends \Eloquent {
+	
 	protected $fillable = ['vehiculo_id','poliza_id','numero_certificado','suma_asegurada','suma_asegurada_blindaje','prima_neta','iva','fraccionamiento','emision','prima_total','pct_iva','pct_fraccionamiento','pct_emision','estado','fecha_inclusion','poliza_inclusion_id','poliza_exclusion_id','pct_deducible_robo','deducible_minimo_robo','pct_deducible_dano','deducible_minimo_dano','motivo_anulacion_id','fecha_anulacion','activo_declaracion','cliente_id','asistencia'];
 
 	protected $table = 'poliza_vehiculo';
