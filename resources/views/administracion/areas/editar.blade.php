@@ -11,6 +11,7 @@
             {!! Form::model($area, ['route' => array('editar_area', $area->id), 'method' => 'PUT', 'id' => 'form', 'class' => 'validate-form']) !!}
 			
 				{!! Field::text('nombre', null, ['data-required'=>'true']) !!}
+				{!! Field::select('estado', $estados, null, ['data-required'=>'true']) !!}
 
 				<br/>
 

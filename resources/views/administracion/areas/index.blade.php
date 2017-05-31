@@ -19,6 +19,7 @@
 					<thead>
 						<tr>
 							<th>NOMBRE</th>
+							<th>ESTADO</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -26,6 +27,7 @@
 						@foreach($areas as $area)
 							<tr>
 								<td>{{ $area->nombre }}</td>
+								<td>{{ $area->descripcion_estado }}</td>
 								<td>
 									<a href="{{route('editar_area',$area->id)}}" class="btn btn-warning btn-xs fa fa-edit" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"></a>
 								</td>

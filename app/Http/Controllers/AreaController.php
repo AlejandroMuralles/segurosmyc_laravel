@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Controller, Redirect, Input, Auth, View, Session;
+use Controller, Redirect, Input, Auth, View, Session, Variable;
 
 use App\App\Entities\Area;
 use App\App\Repositories\AreaRepo;
@@ -25,7 +25,8 @@ class AreaController extends BaseController {
 	}
 
 	public function mostrarAgregar(){
-		return View::make('administracion/areas/agregar');
+		$estados = Variable::getEstadosGenerales();
+		return View::make('administracion/areas/agregar', compact('estados'));
 	}
 
 	public function agregar()
@@ -38,7 +39,8 @@ class AreaController extends BaseController {
 
 	public function mostrarEditar($id){
 		$area = $this->areaRepo->find($id);
-		return View::make('administracion/areas/editar', compact('area'));
+		$estados = Variable::getEstadosGenerales();
+		return View::make('administracion/areas/editar', compact('area','estados'));
 	}
 
 	public function editar($id)

@@ -19,6 +19,7 @@ class AreaManager extends BaseManager
 
 		$rules = [
 			'nombre'  => 'required',
+			'estado' => 'required'
 		];
 
 		return $rules;
