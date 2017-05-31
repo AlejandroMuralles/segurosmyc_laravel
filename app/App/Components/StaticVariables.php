@@ -10,8 +10,8 @@ class StaticVariables {
 	];
 
 	protected $generos = [
-		'2' 	=> 'FEMENINO',
-		'1' 	=> 'MASCULINO',
+		'F' 	=> 'FEMENINO',
+		'M' 	=> 'MASCULINO',
 	];
 
 	protected $empresasCelular = [

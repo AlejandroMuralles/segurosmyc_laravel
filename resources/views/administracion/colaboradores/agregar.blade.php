@@ -28,8 +28,8 @@
 
 				<div class="form-group">
 					<label for="sexo">Sexo</label><br/>
-					<input type="radio" name="sexo" value="0" checked> Femenino</input>&nbsp;&nbsp;&nbsp;
-					<input type="radio" name="sexo" value="1" > Masculino</input>
+					<input type="radio" name="sexo" value="F" checked> Femenino</input>&nbsp;&nbsp;&nbsp;
+					<input type="radio" name="sexo" value="M" > Masculino</input>
 				</div>
 
 				<div class="row">
