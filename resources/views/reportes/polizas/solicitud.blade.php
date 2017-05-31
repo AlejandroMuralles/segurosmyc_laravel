@@ -38,16 +38,19 @@ h6{
             Solicitud No.: {{$poliza->numero_solicitud}}
           </td>
           <td colspan="6">
-            Solicita: {{$poliza->usuario_actualiza->colaborador->nombre_completo}}
-          </td>
-        </tr>
-        <tr>
-          <td colspan="6">
             Fecha de Vigencia:
             desde {{ date('d-m-Y', strtotime($poliza->fecha_inicio)) }} hasta {{date('d-m-Y', strtotime($poliza->fecha_fin)) }}
           </td>
-          <td colspan="6">
+        </tr>
+        <tr>
+          <td colspan="4">
+            Solicita: {{$poliza->usuario_actualiza->colaborador->nombre_completo}}            
+          </td>
+          <td colspan="4">
             Fecha de Solicitud: {{date('d-m-Y')}}
+          </td>
+          <td colspan="4">
+            Cantidad de Pagos: {{$poliza->cantidad_pagos}}
           </td>
         </tr>
         <tr>
@@ -178,7 +181,7 @@ h6{
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <td colspan="10" class="sub-title">Coberturas Particulares</td>
+            <td colspan="10" class="sub-title">COBERTURAS PARTICULARES</td>
           </tr>
           <tr>
             <th colspan="4" class="text-center">COBERTURA</th>

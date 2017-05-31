@@ -36,7 +36,7 @@ class Poliza extends \Eloquent {
 	public function getUsuarioActualizaAttribute()
 	{
 		$userRepo = new UserRepo();
-		return $userRepo->getByUsername($this->user_updated);
+		return $userRepo->getByUsername($this->updated_by);
 	}
 
 	public function getDiasRenovacionAttribute()

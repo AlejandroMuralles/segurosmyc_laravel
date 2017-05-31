@@ -19,7 +19,7 @@ class CrearTablaPago extends Migration
             $table->string('numero_documento',45);
             $table->date('fecha_pago');
             $table->double('monto');
-            $table->text('observaciones');
+            $table->text('observaciones')->nullable();
             $table->integer('banco_id')->unsigned();
             $table->timestamps();
             $table->string('created_by',45);

@@ -29,7 +29,7 @@ class PolizaVehiculoRepo extends BaseRepo{
 	
 	public function getByInclusion($inclusionId)
 	{
-		return PolizaVehiculo::where('poliza_inclusion_id','=',$inclusionId)->with('vehiculo')->get();
+		return PolizaVehiculo::where('poliza_inclusion_i',$inclusionId)->with('vehiculo')->get();
 	}
 
 	public function getByExclusion($exclusionId)

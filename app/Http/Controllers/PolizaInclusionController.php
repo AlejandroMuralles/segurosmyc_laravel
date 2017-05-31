@@ -30,7 +30,7 @@ class PolizaInclusionController extends BaseController {
 	protected $pfgRepo;
 	protected $pfaRepo;
 
-	public function __construct(PolizaInclusionRepo $polizaInclusionRepo, PolizavehiculoRepo $polizaVehiculoRepo, PolizaCoberturaRepo $polizaCoberturaRepo,PolizaCoberturaVehiculoRepo $polizaCoberturaVehiculoRepo, PolizaRepo $polizaRepo, ImpuestoRepo $impuestoRepo, VehiculoRepo $vehiculoRepo, PorcentajeFraccionamientoGeneralRepo $pfgRepo, PorcentajeFraccionamientoAseguradoraRepo $pfaRepo)
+	public function __construct(PolizaInclusionRepo $polizaInclusionRepo, PolizaVehiculoRepo $polizaVehiculoRepo, PolizaCoberturaRepo $polizaCoberturaRepo,PolizaCoberturaVehiculoRepo $polizaCoberturaVehiculoRepo, PolizaRepo $polizaRepo, ImpuestoRepo $impuestoRepo, VehiculoRepo $vehiculoRepo, PorcentajeFraccionamientoGeneralRepo $pfgRepo, PorcentajeFraccionamientoAseguradoraRepo $pfaRepo)
 	{
 		$this->polizaInclusionRepo = $polizaInclusionRepo;
 		$this->polizaVehiculoRepo = $polizaVehiculoRepo; 
