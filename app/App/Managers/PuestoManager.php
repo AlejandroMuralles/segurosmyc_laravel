@@ -20,7 +20,7 @@ class PuestoManager extends BaseManager
 		$rules = [
 			'nombre'  		=> 'required',
 			'area_id'       => 'required',
-			'puesto'		=> 'required'
+			'estado'		=> 'required'
 		];
 
 		return $rules;
