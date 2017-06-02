@@ -47,7 +47,7 @@
 								<td>{{ $poliza->ramo->nombre }}</td>
 								<td>{{ $poliza->dias_desde_solicitud }}</td>
 								<td>
-									<a href="{{route('ver_solicitud_poliza',$poliza->id)}}" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver"><i class="fa fa-eye"></i></a>
+									<a href="{{route($poliza->ruta_solicitud,$poliza->id)}}" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver"><i class="fa fa-eye"></i></a>
 									<a href="{{route('editar_poliza',$poliza->id)}}" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fa fa-edit"></i></a>
 									<a href="{{route('copiar_solicitud_poliza',$poliza->id)}}" class="btn btn-info btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Copiar"><i class="fa fa-clone"></i></a>
 									<a href="{{route('aprobar_solicitud_poliza',$poliza->id)}}" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="top" title="" data-original-title="Aprobar"><i class="fa fa-check"></i></a>

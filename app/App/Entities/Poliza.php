@@ -9,7 +9,7 @@ class Poliza extends \Eloquent {
 
 	protected $table = 'poliza';
 
-	protected $fillable = ['estado','numero','fecha_inicio','fecha_fin','aseguradora_id','cliente_id','dueno_id','ejecutivo_id','tipo_poliza','cantidad_pagos','frecuencia_pago_id','tipo_pago_id','anual_declarativa','pct_iva','pct_emision','pct_fraccionamiento','fecha_solicitud','fecha_aprobada','fecha_anulada','fecha_renovada','motivo_anulacion_id','fecha_anulacion','ramo_id','ruta','dirigida_a'];
+	protected $fillable = ['estado','numero','fecha_inicio','fecha_fin','aseguradora_id','cliente_id','dueno_id','ejecutivo_id','tipo_poliza','cantidad_pagos','frecuencia_pago_id','tipo_pago_id','anual_declarativa','pct_iva','pct_emision','pct_fraccionamiento','fecha_solicitud','fecha_aprobada','fecha_anulada','fecha_renovada','motivo_anulacion_id','fecha_anulacion','ramo_id','ruta','ruta_solicitud','dirigida_a'];
 
 	public function getDiasDesdeSolicitudAttribute()
 	{

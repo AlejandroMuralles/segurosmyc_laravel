@@ -42,11 +42,30 @@ class PolizaManager extends BaseManager
 	function prepareData($data)
 	{
         if(isset($data['ramo_id'])){
-            if($data['ramo_id'] == 1) $data['ruta'] = 'ver_poliza';
-            if($data['ramo_id'] == 2) $data['ruta'] = 'ver_poliza';
-            if($data['ramo_id'] == 5) $data['ruta'] = 'ver_poliza';
-            if($data['anual_declarativa'] == 'D') $data['ruta'] = 'ver_poliza_declarativa';
-            if($data['ramo_id'] == 6) $data['ruta'] = 'ver_poliza_hidrocarburos';
+            if($data['ramo_id'] == 1) { 
+                $data['ruta'] = 'ver_poliza';
+                $data['ruta_solicitud'] = 'ver_solicitud_poliza';
+            }
+            if($data['ramo_id'] == 2){
+                $data['ruta'] = 'ver_poliza';  
+                $data['ruta_solicitud'] = 'ver_solicitud_poliza';
+            } 
+            if($data['ramo_id'] == 5) {
+                $data['ruta'] = 'ver_poliza';
+                $data['ruta_solicitud'] = 'ver_solicitud_poliza';
+            }
+            if($data['anual_declarativa'] == 'D') {
+                $data['ruta'] = 'ver_poliza_declarativa';
+                $data['ruta_solicitud'] = 'ver_solicitud_poliza';
+            }
+            if($data['ramo_id'] == 6) {
+                $data['ruta'] = 'ver_poliza_hidrocarburos';
+                $data['ruta_solicitud'] = 'ver_solicitud_poliza';
+            }
+            if($data['ramo_id'] == 7) {
+                $data['ruta'] = 'ver_poliza_incendio';
+                $data['ruta_solicitud'] = 'ver_solicitud_poliza_incendio';
+            }
         }
 
 		return $data;

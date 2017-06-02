@@ -54,13 +54,7 @@ class PolizaController extends BaseController {
 	protected $polizaVehiculoReclamoRepo;
 
 
-	public function __construct(PolizaRepo $polizaRepo, AseguradoraRepo $aseguradoraRepo, ClienteRepo $clienteRepo, ColaboradorRepo $colaboradorRepo, 
-								FrecuenciaPagoRepo $frecuenciaPagoRepo, PolizaVehiculoRepo $polizaVehiculoRepo, PolizaInclusionRepo $polizaInclusionRepo, PolizaExclusionRepo $polizaExclusionRepo,PolizaCoberturaRepo $polizaCoberturaRepo,
-								PolizaCoberturaVehiculoRepo $polizaCoberturaVehiculoRepo, PolizaRequerimientoRepo $polizaRequerimientoRepo,
-								ImpuestoRepo $impuestoRepo, NotaCreditoRepo $notaCreditoRepo, MotivoAnulacionRepo $motivoAnulacionRepo,
-								PorcentajeFraccionamientoGeneralRepo $pfgRepo,
-								PorcentajeFraccionamientoAseguradoraRepo $pfaRepo, PolizaDeclaracionRepo $polizaDeclaracionRepo,
-								RamoRepo $ramoRepo, BitacoraPolizaRepo $bitacoraPolizaRepo, PolizaModificacionRepo $polizaModificacionRepo, PolizaVehiculoReclamoRepo $polizaVehiculoReclamoRepo)
+	public function __construct(PolizaRepo $polizaRepo, AseguradoraRepo $aseguradoraRepo, ClienteRepo $clienteRepo, ColaboradorRepo $colaboradorRepo, FrecuenciaPagoRepo $frecuenciaPagoRepo, PolizaVehiculoRepo $polizaVehiculoRepo, PolizaInclusionRepo $polizaInclusionRepo, PolizaExclusionRepo $polizaExclusionRepo,PolizaCoberturaRepo $polizaCoberturaRepo, PolizaCoberturaVehiculoRepo $polizaCoberturaVehiculoRepo, PolizaRequerimientoRepo $polizaRequerimientoRepo, ImpuestoRepo $impuestoRepo, NotaCreditoRepo $notaCreditoRepo, MotivoAnulacionRepo $motivoAnulacionRepo, PorcentajeFraccionamientoGeneralRepo $pfgRepo, PorcentajeFraccionamientoAseguradoraRepo $pfaRepo, PolizaDeclaracionRepo $polizaDeclaracionRepo, RamoRepo $ramoRepo, BitacoraPolizaRepo $bitacoraPolizaRepo, PolizaModificacionRepo $polizaModificacionRepo, PolizaVehiculoReclamoRepo $polizaVehiculoReclamoRepo)
 	{
 		$this->polizaRepo = $polizaRepo;
 		$this->aseguradoraRepo = $aseguradoraRepo;
@@ -334,6 +328,57 @@ class PolizaController extends BaseController {
 			$siniestralidad = $totalReclamos * 100 / $totalCobradoRequerimientos;
 
 		return View::make('administracion/polizas/ver_poliza_hidrocarburos', compact('poliza', 'vehiculos','coberturas','requerimientos','inclusiones', 'exclusiones','notas','motivosAnulacion','coberturasParticulares','declaraciones','observaciones','modificaciones','reclamos','totalReclamos','siniestralidad','totalCobradoRequerimientos'));
+
+	}
+
+	public function mostrarVerSolicitudIncendio($id)
+	{
+		$poliza = $this->polizaRepo->find($id);
+		
+		if($poliza->estado != 'S')
+		{
+			Session::flash('error', 'La solicitud de póliza ya fue procesada. Estado actual: ' . $poliza->descripcion_estado);
+			return Redirect::route('solicitudes_polizas');
+		}
+
+		$observaciones = $this->bitacoraPolizaRepo->getByPoliza($id);
+		$requerimientos = $this->polizaRequerimientoRepo->getByPoliza($id);
+		return View::make('administracion/polizas/ver_solicitud_incendio', compact('poliza','requerimientos','observaciones'));
+
+	}
+
+	public function mostrarVerPolizaIncendio($id)
+	{
+		$poliza = $this->polizaRepo->find($id);
+		
+		if($poliza->estado == 'S')
+		{
+			Session::flash('error', 'La póliza aún esta en estado de SOLICITUD.');
+			return Redirect::route('polizas_vigentes');
+		}
+
+		$requerimientos = $this->polizaRequerimientoRepo->getByPoliza($id);
+		$notas = $this->notaCreditoRepo->getByPoliza($id);
+		$modificaciones = $this->polizaModificacionRepo->getByPoliza($id);
+		$motivosAnulacion = $this->motivoAnulacionRepo->lists('nombre','id');
+		$observaciones = $this->bitacoraPolizaRepo->getByPoliza($id);
+		$reclamos = $this->polizaVehiculoReclamoRepo->getByPoliza($id);
+
+		$totalReclamos = 0;
+		foreach($reclamos as $r)
+			$totalReclamos += $r->valor;
+
+		$totalCobradoRequerimientos = 0;
+		foreach ($requerimientos as $requerimiento) {
+			if($requerimiento->estado == 'C')
+				$totalCobradoRequerimientos += $requerimiento->prima_neta;
+		}
+		if($totalCobradoRequerimientos == 0)
+			$siniestralidad = $totalReclamos * 100;
+		else
+			$siniestralidad = $totalReclamos * 100 / $totalCobradoRequerimientos;
+
+		return View::make('administracion/polizas/ver_poliza_hidrocarburos', compact('poliza','requerimientos','notas','motivosAnulacion','observaciones','modificaciones','reclamos','totalReclamos','siniestralidad','totalCobradoRequerimientos'));
 
 	}
 

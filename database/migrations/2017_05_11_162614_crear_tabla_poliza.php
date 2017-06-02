@@ -38,6 +38,7 @@ class CrearTablaPoliza extends Migration
             $table->datetime('fecha_anulacion')->nullable();
             $table->integer('ramo_id')->unsigned();
             $table->string('ruta',45);
+            $table->string('ruta_solicitud',45);
             $table->string('dirigida_a')->nullable();
             $table->timestamps();
             $table->string('created_by',45);

@@ -345,6 +345,10 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('Polizas-Declaracion/editar-hidrocarburo/{id}', ['as' => 'editar_poliza_declaracion_hidrocarburo', 'uses' => 'PolizaDeclaracionController@mostrarEditarHidrocarburo']);
 	Route::post('Polizas-Declaracion/editar-hidrocarburo/{id}', ['as' => 'editar_poliza_declaracion_hidrocarburo', 'uses' => 'PolizaDeclaracionController@editarHidrocarburo']);
 
+	/*POLIZAS DE INCENDIO*/
+	Route::get('Polizas/ver-solicitud-incendio/{id}', ['as' => 'ver_solicitud_poliza_incendio', 'uses' => 'PolizaController@mostrarVerSolicitudIncendio']);
+	Route::get('Polizas/ver-incendio/{id}', ['as' => 'ver_poliza_incendio', 'uses' => 'PolizaController@mostrarVerPolizaIncendio']);
+
 	/* MARCAS DE VEHICULO */
 	Route::get('Frecuencias-Pagos/listado', ['as' => 'frecuencias_pagos', 'uses' => 'FrecuenciaPagoController@listado']);
 	Route::get('Frecuencias-Pagos/agregar', ['as' => 'agregar_frecuencia_pago', 'uses' => 'FrecuenciaPagoController@mostrarAgregar']);	
