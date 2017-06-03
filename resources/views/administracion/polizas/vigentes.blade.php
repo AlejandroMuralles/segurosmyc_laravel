@@ -6,6 +6,17 @@
 
 @section('css')
 <link href="{{ asset('assets/plugins/datatables/datatables.css')}}" rel="stylesheet">
+<style>
+tfoot input {
+    width: 100%;
+    padding: 3px;
+    box-sizing: border-box;
+    color: black !important;
+}
+tfoot.search {
+    display: table-header-group;
+}
+</style>
 @stop
 
 @section('content')
@@ -21,12 +32,26 @@
 							<th>NUMERO</th>
 							<th>ASEGURADORA</th>
 							<th>CLIENTE</th>
+							<th>CONSORCIO</th>
 							<th>RAMO</th>
 							<th>TIPO PAGO</th>
 							<th>DIAS RENOVACION</th>
 							<th width="100px;"></th>
 						</tr>
 					</thead>
+					<tfoot class="search">
+						<tr>
+							<th></th>
+							<th class="searchField">NUMERO</th>
+							<th class="searchField">ASEGURADORA</th>
+							<th class="searchField">CLIENTE</th>
+							<th class="searchField">CONSORCIO</th>
+							<th class="searchField">RAMO</th>
+							<th class="searchField">TIPO PAGO</th>
+							<th></th>
+							<th width="100px;"></th>
+						</tr>
+					</tfoot>
 					<tbody>
 						@foreach($polizas as $poliza)
 							<tr class="@if($poliza->dias_renovacion <= 30) bg-red text-white @endif">
@@ -34,6 +59,11 @@
 								<td>{{ $poliza->numero }}</td>
 								<td>{{ $poliza->aseguradora->nombre }}</td>
 								<td>{{ $poliza->cliente->nombre }}</td>
+								<td>
+									@if(!is_null($poliza->cliente->consorcio))
+										{{$poliza->cliente->consorcio->nombre}}
+									@endif
+								</td>
 								<td>{{ $poliza->ramo->nombre }}</td>
 								<td>{{ $poliza->tipo_pago_poliza }}</td>
 								<td>{{ $poliza->dias_renovacion }}</td>
@@ -63,12 +93,27 @@
 <script src="{{ asset('assets/plugins/datatables/datatables-bs3.js') }}"></script>
 <script>
 	$(document).ready(function() {
-   		$('#table').dataTable({
-		    "bSort" : false,
-		    "iDisplayLength" : 20,
-		    "aLengthMenu": [[20, 50, 100, -1], [20, 50, 100, "Todos"]],
-		   	"aaSorting" : [[1, 'desc']]
-		});
-	});
+	    // Setup - add a text input to each footer cell
+	    $('.table tfoot th.searchField').each( function () {
+	        var title = $(this).text();
+	        $(this).html( '<input type="text" placeholder="Buscar '+title+'" />' );
+	    } );
+	 
+	    // DataTable
+	    var table = $('.table').DataTable();
+	 
+	    // Apply the search
+	    table.columns().every( function () {
+	        var that = this;
+	 
+	        $( 'input', this.footer() ).on( 'keyup change', function () {
+	            if ( that.search() !== this.value ) {
+	                that
+	                    .search( this.value )
+	                    .draw();
+	            }
+	        } );
+	    } );
+	} );
 </script>
 @stop

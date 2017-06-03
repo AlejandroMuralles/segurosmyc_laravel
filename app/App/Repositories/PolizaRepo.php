@@ -23,6 +23,7 @@ class PolizaRepo extends BaseRepo{
 		return Poliza::with('aseguradora')
 					->with('cliente')
 					->with('ramo')
+					->with('cliente.consorcio')
 					->where('estado','=',$estado)->get();
 	}
 
