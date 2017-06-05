@@ -253,6 +253,7 @@ class PolizaManager extends BaseManager
                 $polizaNueva->poliza_anterior_id = $poliza->id;
                 $polizaNueva->ramo_id = $poliza->ramo_id;
                 $polizaNueva->ruta = $poliza->ruta;
+                $polizaNueva->ruta_solicitud = $poliza->ruta_solicitud;
         		$polizaNueva->save();
 
         		foreach($vehiculos as $vehiculo)
