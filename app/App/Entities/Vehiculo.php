@@ -6,7 +6,7 @@ class Vehiculo extends \Eloquent {
 
 	protected $table = 'vehiculo';
 
-	protected $fillable = ['placa','tipo_placa','tipo_vehiculo_id','modelo','marca_id','linea','numero_motor','numero_chasis','color','numero_asientos','cilindraje'];
+	protected $fillable = ['placa','tipo_placa','tipo_vehiculo_id','modelo','marca_id','linea','numero_motor','numero_chasis','color','numero_asientos','cilindraje','estado'];
 
 	public function tipoVehiculo()
 	{
