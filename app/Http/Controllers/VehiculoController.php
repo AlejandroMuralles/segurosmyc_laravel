@@ -40,7 +40,9 @@ class VehiculoController extends BaseController {
 
 	public function agregar()
 	{
-		$manager = new VehiculoManager(new Vehiculo(), Input::all());
+		$data = Input::all();
+		$data['estado'] = 'A';
+		$manager = new VehiculoManager(new Vehiculo(), $data);
 		$manager->save();
 		Session::flash('success', 'Se agregó el vehiculo con éxito.');
 		return Redirect::route('vehiculos');
@@ -57,7 +59,9 @@ class VehiculoController extends BaseController {
 	public function editar($id)
 	{
 		$vehiculo = $this->vehiculoRepo->find($id);
-		$manager = new VehiculoManager($vehiculo, Input::all());
+		$data = Input::all();
+		$data['estado'] = $vehiculo->estado;
+		$manager = new VehiculoManager($vehiculo, $data);
 		$manager->save();
 		Session::flash('success', 'Se editó el vehiculo con éxito.');
 		return Redirect::route('vehiculos');
