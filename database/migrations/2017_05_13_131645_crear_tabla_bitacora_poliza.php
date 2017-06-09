@@ -17,11 +17,16 @@ class CrearTablaBitacoraPoliza extends Migration
             $table->increments('id');
             $table->string('observaciones',400);
             $table->integer('poliza_id')->unsigned();
+            $table->integer('poliza_inclusion_id')->unsigned()->nullable();
+            $table->integer('poliza_exclusion_id')->unsigned()->nullable();
+            $table->integer('estado_poliza')->unsigned();
             $table->timestamps();
             $table->string('created_by',45);
             $table->string('updated_by',45);
 
             $table->foreign('poliza_id')->references('id')->on('poliza');
+            $table->foreign('poliza_inclusion_id')->references('id')->on('poliza_inclusion');
+            $table->foreign('poliza_exclusion_id')->references('id')->on('poliza_exclusion');
         });
     }
 

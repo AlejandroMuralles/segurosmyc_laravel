@@ -16,7 +16,7 @@ class CrearTablaProductoCobertura extends Migration
         Schema::create('producto_cobertura', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('producto_id')->unsigned();
-            $table->integer('aseguradora_id')->unsigned();
+            $table->integer('cobertura_id')->unsigned();
             $table->tinyInteger('amparada')->nullable();
             $table->double('suma_asegurada')->nullable();
             $table->double('pct_deducible')->nullable();
@@ -26,8 +26,8 @@ class CrearTablaProductoCobertura extends Migration
             $table->string('updated_by',45);
 
             $table->foreign('producto_id')->references('id')->on('producto');
-            $table->foreign('aseguradora_id')->references('id')->on('aseguradora');
-            $table->unique(['producto_id','aseguradora_id']);
+            $table->foreign('cobertura_id')->references('id')->on('cobertura');
+            $table->unique(['producto_id','cobertura_id']);
         });
     }
 

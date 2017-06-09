@@ -648,7 +648,7 @@
 											<tr>
 												<td>{{ $observacion->observaciones }}</td>
 												<td>{{ date('d-m-Y H:i', strtotime($observacion->created_at)) }}</td>
-												<td>{{ $observacion->user_created }}</td>
+												<td>{{ $observacion->created_by }}</td>
 											</tr>
 										@endforeach
 									</tbody>

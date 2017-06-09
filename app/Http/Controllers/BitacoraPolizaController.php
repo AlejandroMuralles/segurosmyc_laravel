@@ -36,15 +36,9 @@ class BitacoraPolizaController extends BaseController {
 		$manager->save();
 		Session::flash('success', 'Se agregó la observacion a la poliza con éxito.');
 		if($poliza->estado == 'S')
-			$url = route('ver_solicitud_poliza',$polizaId).'#observaciones';
-		elseif($poliza->ramo_id == 1 || $poliza->ramo_id == 5){
-			if($poliza->anual_declarativa == 'A')
-				$url = route('ver_poliza',$polizaId).'#observaciones';
-			else
-				$url = route('ver_poliza_declarativa',$polizaId).'#observaciones';
-		}
-		elseif($poliza->ramo_id == 6)
-			$url = route('ver_poliza_hidrocarburos',$polizaId).'#observaciones';
+			$url = route($poliza->ruta_solicitud,$polizaId).'#observaciones';
+		else
+			$url = route($poliza->ruta,$polizaId).'#observaciones';
 		return Redirect::to($url);
 		
 	}
@@ -59,7 +53,11 @@ class BitacoraPolizaController extends BaseController {
 		$bitacoraPoliza = $this->bitacoraPolizaRepo->find($id);
 		$manager = new BitacoraPolizaManager($bitacoraPoliza, Input::all());
 		$manager->save();
-		Session::flash('success', 'Se editó el bitacora de poliza con éxito.');
-		return Redirect::route('bitacoras_polizas');
+		Session::flash('success', 'Se editó la observación de poliza con éxito.');
+		if($poliza->estado == 'S')
+			$url = route($poliza->ruta_solicitud,$polizaId).'#observaciones';
+		else
+			$url = route($poliza->ruta,$polizaId).'#observaciones';
+		return Redirect::to($url);
 	}
 }

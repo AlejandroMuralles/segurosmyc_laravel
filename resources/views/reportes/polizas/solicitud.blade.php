@@ -219,5 +219,11 @@ h6{
         @endforeach
       </tbody>
     </table>
+    <h6 class="title">OBSERVACIONES</h6>
+    <div class="ribbon bg-maroon"></div>
+    @foreach($observaciones as $observacion)
+    <span style="color: black; font-size: 10px">{{$observacion->observaciones}}</span>
+    <br/>
+    @endforeach
   </div>
 @stop

@@ -16,15 +16,11 @@
 
 	            <p>
 	                <input type="submit" value="Agregar" class="btn btn-primary">
-	                @if($poliza->ramo_id == 1)
-						@if($poliza->anual_declarativa == 'A')
-							<a href="{{ route('ver_poliza',$poliza->id).'#observaciones' }}" class="btn btn-danger">Cancelar</a>
-						@else
-							<a href="{{ route('ver_poliza_declarativa',$poliza->id).'#observaciones' }}" class="btn btn-danger">Cancelar</a>
-						@endif
-					@elseif($poliza->ramod_id == 6)
-						<a href="{{ route('ver_poliza_hidrocarburos',$poliza->id).'#observaciones' }}" class="btn btn-danger">Cancelar</a>
-					@endif
+	                @if($poliza->estado = 'S')
+						<a href="{{ route($poliza->ruta_solicitud,$poliza->id).'#observaciones' }}" class="btn btn-danger">Cancelar</a>
+	                @else
+						<a href="{{ route($poliza->ruta,$poliza->id).'#observaciones' }}" class="btn btn-danger">Cancelar</a>
+	                @endif
 	            </p>
 
             {!! Form::close() !!}

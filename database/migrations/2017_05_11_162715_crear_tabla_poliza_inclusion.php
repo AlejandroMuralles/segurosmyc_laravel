@@ -17,6 +17,8 @@ class CrearTablaPolizaInclusion extends Migration
             $table->increments('id');
             $table->string('endoso',45)->nullable();
             $table->integer('poliza_id')->unsigned();
+            $table->double('pct_fraccionamiento');
+            $table->double('cantidad_pagos');
             $table->datetime('fecha_solicitud');
             $table->datetime('fecha_aprobada')->nullable();
             $table->datetime('fecha_rechazada')->nullable();
