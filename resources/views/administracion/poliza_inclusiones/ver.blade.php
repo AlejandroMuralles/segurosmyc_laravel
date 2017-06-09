@@ -21,6 +21,9 @@
 				<div class="col-lg-3">
 					{!! Field::text('numero_solicitud', $polizaInclusion->numero_solicitud, ['disabled']) !!} 
 				</div>
+				<div class="col-lg-3">
+					{!! Field::text('pct_fraccionamiento', $polizaInclusion->pct_fraccionamiento, ['disabled']) !!} 
+				</div>
 				<div class="col-lg-3">{!! Field::text('estado', $polizaInclusion->descripcion_estado, ['disabled']) !!} </div>
 			</div>
 			<div class="row">
@@ -140,7 +143,7 @@
 				</div>
 			</div>
 			
-			<a href="{{route('ver_poliza',$polizaInclusion->poliza_id)}}#inclusiones" class="btn btn-danger">Regresar</a>
+			<a href="{{route($polizaInclusion->poliza->ruta,$polizaInclusion->poliza_id)}}#inclusiones" class="btn btn-danger">Regresar</a>
 		</div>
 	</div>
 </div>

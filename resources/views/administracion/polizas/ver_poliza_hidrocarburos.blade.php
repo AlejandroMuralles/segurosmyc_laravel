@@ -429,6 +429,7 @@
 													<a href="{{route('ver_poliza_inclusion',$in->id)}}" class="btn btn-warning btn-xs"><i class="fa fa-eye"></i></a>
 													@if($poliza->estado == 'V')
 														@if($in->estado == 'S')
+															<a href="{{route('editar_poliza_inclusion',$in->id)}}" class="btn btn-warning btn-xs fa fa-edit" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"></a>
 															<a href="{{route('aprobar_poliza_inclusion',$in->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-check"></i></a>
 															<a href="{{route('agregar_poliza_inclusion_vehiculo',$in->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> <i class="fa fa-car"></i></a>
 															<a href="{{route('agregar_poliza_inclusion_cobertura',$in->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> <i class="fa fa-list"></i></a>

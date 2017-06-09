@@ -414,9 +414,10 @@
 												<td>{{ $in->endoso }}</td>
 												<td>{{ $in->descripcion_estado }}</td>
 												<td>
-													<a href="{{route('ver_poliza_inclusion',$in->id)}}" class="btn btn-warning btn-xs fa fa-eye" data-toggle="tooltip" data-placement="top" data-original-title="Editar"></a>
+													<a href="{{route('ver_poliza_inclusion',$in->id)}}" class="btn btn-warning btn-xs fa fa-eye" data-toggle="tooltip" data-placement="top" data-original-title="Ver"></a>
 													@if($poliza->estado == 'V')
 														@if($in->estado == 'S')
+															<a href="{{route('editar_poliza_inclusion',$in->id)}}" class="btn btn-warning btn-xs fa fa-edit" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"></a>
 															<a href="{{route('aprobar_poliza_inclusion',$in->id)}}" class="btn btn-primary btn-xs fa fa-check" data-toggle="tooltip" data-placement="top" title="" data-original-title="Aprobar"></a>
 															<a href="{{route('agregar_poliza_inclusion_vehiculo',$in->id)}}" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Agregar Vehiculo"><i class="fa fa-plus"></i> <i class="fa fa-car"></i></a>
 															<a href="{{route('agregar_poliza_inclusion_cobertura',$in->id)}}" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Agregar Cobertura General"><i class="fa fa-plus"></i> <i class="fa fa-list"></i></a>

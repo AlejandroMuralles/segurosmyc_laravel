@@ -18,6 +18,8 @@ use App\App\Repositories\ImpuestoRepo;
 use App\App\Repositories\PorcentajeFraccionamientoGeneralRepo;
 use App\App\Repositories\PorcentajeFraccionamientoAseguradoraRepo;
 
+use App\App\Managers\SaveDataException;
+
 class PolizaInclusionController extends BaseController {
 
 	protected $polizaInclusionRepo;
@@ -51,11 +53,52 @@ class PolizaInclusionController extends BaseController {
 		$data = Input::all();
 		$data['poliza_id'] = $polizaId;
 		$data['estado'] = 'S';
+		$data['cantidad_pagos'] = $poliza->cantidad_pagos;
+		$data['pct_fraccionamiento'] = $poliza->pct_fraccionamiento;
 		$data['fecha_solicitud'] = date('Y-m-d H:i:s');
 		$manager = new PolizaInclusionManager(new PolizaInclusion(), $data);
 		$manager->save();
 		Session::flash('success', 'Se agregó la solicitud de inclusión con éxito.');
 		$url = route($poliza->ruta,$polizaId) . '#inclusiones';
+		return Redirect::to($url);
+	}
+
+	public function mostrarEditar($polizaInclusionId)
+	{
+		$polizaInclusion = $this->polizaInclusionRepo->find($polizaInclusionId);
+		if($polizaInclusion->estado != 'S'){
+			throw new SaveDataException("Error", new \Exception('La inclusión no esta en estado de solicitud.'));
+		}
+		$fraccionamientos = array();
+		$pfg = $this->pfgRepo->all('cantidad_pagos');
+		foreach($pfg as $f)
+		{
+			$fraccionamientos[$f->cantidad_pagos] = $f->cantidad_pagos;
+		}
+		return View::make('administracion/poliza_inclusiones/editar', compact('polizaInclusion','fraccionamientos'));
+	}
+
+	public function editar($polizaInclusionId)
+	{
+		$data = Input::all();
+		$polizaInclusion = $this->polizaInclusionRepo->find($polizaInclusionId);
+		$vehiculos = $this->polizaVehiculoRepo->getByInclusion($polizaInclusion->id);
+		$pct_fraccionamiento = 0;
+		$pfa = $this->pfaRepo->getByAseguradoraByCantidadPagos($polizaInclusion->poliza->aseguradora_id, $data['cantidad_pagos']);
+		if(is_null($pfa)){
+			$pfg = $this->pfgRepo->getByCantidadPagos($data['cantidad_pagos']);
+			if(!is_null($pfg)){
+				$pct_fraccionamiento = $pfg->porcentaje/100;
+			}
+		}
+		else{
+			$pct_fraccionamiento = $pfa->porcentaje/100;
+		}
+		$data['pct_fraccionamiento'] = $pct_fraccionamiento;
+		$manager = new PolizaInclusionManager($polizaInclusion, $data);
+		$manager->editar($polizaInclusion, $vehiculos);
+		Session::flash('success', 'Se editó la solicitud de inclusión con éxito.');
+		$url = route($polizaInclusion->poliza->ruta,$polizaInclusion->poliza_id) . '#inclusiones';
 		return Redirect::to($url);
 	}
 
@@ -85,7 +128,7 @@ class PolizaInclusionController extends BaseController {
 		$prima_neta = $data['prima_neta'];
 		$asistencia = $data['asistencia'];
 
-		$pct_fraccionamiento = $polizaInclusion->poliza->pct_fraccionamiento;
+		$pct_fraccionamiento = $polizaInclusion->pct_fraccionamiento;
 		$pct_emision = $polizaInclusion->poliza->pct_emision;
 		$pct_iva =  $polizaInclusion->poliza->pct_iva;
 

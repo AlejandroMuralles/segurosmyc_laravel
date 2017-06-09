@@ -380,6 +380,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 	/* POLIZAS - INCLUSIONES */
 	Route::post('Polizas-Inclusion/agregar/{polizaId}', ['as' => 'agregar_poliza_inclusion', 'uses' => 'PolizaInclusionController@agregar']);
+	Route::get('Polizas-Inclusion/editar/{inclusionId}', ['as' => 'editar_poliza_inclusion', 'uses' => 'PolizaInclusionController@mostrarEditar']);
+	Route::put('Polizas-Inclusion/editar/{inclusionId}', ['as' => 'editar_poliza_inclusion', 'uses' => 'PolizaInclusionController@editar']);
 	Route::get('Polizas-Inclusion/ver/{inclusionId}', ['as' => 'ver_poliza_inclusion', 'uses' => 'PolizaInclusionController@mostrarVer']);
 	Route::get('Polizas-Inclusion/agregar-vehiculo/{inclusionId}', ['as' => 'agregar_poliza_inclusion_vehiculo', 'uses' => 'PolizaInclusionController@mostrarAgregarVehiculo']);
 	Route::post('Polizas-Inclusion/agregar-vehiculo/{inclusionId}', ['as' => 'agregar_poliza_inclusion_vehiculo', 'uses' => 'PolizaInclusionController@agregarVehiculo']);

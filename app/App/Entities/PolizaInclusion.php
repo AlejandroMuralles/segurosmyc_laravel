@@ -6,7 +6,7 @@ use Variable;
 use App\App\Repositories\UserRepo;
 
 class PolizaInclusion extends \Eloquent {
-	protected $fillable = ['estado','poliza_id','endoso','fecha_solicitud','fecha_aprobada','fecha_rechazada','estado','motivo_anulacion_id','fecha_anulacion'];
+	protected $fillable = ['estado','poliza_id','endoso','fecha_solicitud','fecha_aprobada','fecha_rechazada','estado','motivo_anulacion_id','fecha_anulacion','pct_fraccionamiento','cantidad_pagos'];
 
 	protected $table = 'poliza_inclusion';
 

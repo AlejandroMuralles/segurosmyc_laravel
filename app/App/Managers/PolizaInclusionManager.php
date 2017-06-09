@@ -92,6 +92,57 @@ class PolizaInclusionManager extends BaseManager
 		return $data;
 	}
 
+	function editar($polizaInclusion, $vehiculos)
+	{
+		$errorMessage = '¡Error editando póliza!';
+        /*$rules = $this->getRules();
+        $validation = \Validator::make($this->data, $rules);
+        if ($validation->fails())
+        {
+            throw new ValidationException('Validation failed', $validation->messages());
+        }*/
+        try{
+            \DB::beginTransaction();
+                $polizaInclusion->fill($this->prepareData($this->data));
+                $polizaInclusion->save();
+
+                foreach($vehiculos as $vehiculo)
+                {
+                    $errorMessage = 'Error editando vehiculos';
+
+                    $prima_neta = $vehiculo->prima_neta;
+                    
+                    $pct_fraccionamiento = $polizaInclusion->pct_fraccionamiento;
+                    $pct_emision = $vehiculo->pct_emision;
+                    $pct_iva =  $vehiculo->pct_iva;
+
+                    $fraccionamiento = round($prima_neta*$pct_fraccionamiento,2);
+                    $emision = round($prima_neta * $pct_emision,2);
+                    $iva = round(($prima_neta + $fraccionamiento + $emision) * $pct_iva,2);
+                    $prima_total = round($prima_neta + $emision + $fraccionamiento + $iva,2);
+
+                    $vehiculo->pct_fraccionamiento = $pct_fraccionamiento;
+                    $vehiculo->fraccionamiento = $fraccionamiento;
+                    $vehiculo->pct_emision = $pct_emision;
+                    $vehiculo->emision = $emision;
+                    $vehiculo->pct_iva = $pct_iva;
+                    $vehiculo->iva = $iva;
+                    
+                    $vehiculo->prima_total = $prima_total;
+
+                    $vehiculo->save();
+                }
+
+            \DB::commit();
+        }
+        catch(\Exception $ex)
+        {
+            throw new SaveDataException($errorMessage, $ex);
+        }
+        
+        return true;
+	}
+
 	function agregarVehiculo($polizaInclusionId){
 		$polizaVehiculo = new PolizaVehiculo();
 		$rules = $this->getRulesAgregarVehiculo();

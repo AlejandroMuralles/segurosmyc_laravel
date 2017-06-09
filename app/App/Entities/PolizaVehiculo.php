@@ -59,7 +59,7 @@ class PolizaVehiculo extends \Eloquent {
 
 	public function inclusion()
 	{
-		return $this->belongsTo('App\App\Entities\PolizaInclusion');
+		return $this->belongsTo('App\App\Entities\PolizaInclusion','poliza_inclusion_id');
 	}
 
 	public function exclusion()

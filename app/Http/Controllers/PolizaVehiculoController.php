@@ -177,6 +177,10 @@ class PolizaVehiculoController extends BaseController {
 		$asistencia = $data['asistencia'];
 
 		$pct_fraccionamiento = $poliza->pct_fraccionamiento;
+		if(!is_null($vehiculo->poliza_inclusion_id)){
+			$inclusion = $vehiculo->inclusion;
+			$pct_fraccionamiento = $inclusion->pct_fraccionamiento;
+		}
 		$pct_emision = $poliza->pct_emision;
 		$pct_iva =  $poliza->pct_iva;
 
