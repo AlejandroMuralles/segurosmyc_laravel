@@ -32,6 +32,7 @@ class BitacoraPolizaController extends BaseController {
 		$poliza = $this->polizaRepo->find($polizaId);
 		$data = Input::all();
 		$data['poliza_id'] = $polizaId;
+		$data['estado_poliza'] = $poliza->estado;
 		$manager = new BitacoraPolizaManager(new BitacoraPoliza(), $data);
 		$manager->save();
 		Session::flash('success', 'Se agregó la observacion a la poliza con éxito.');

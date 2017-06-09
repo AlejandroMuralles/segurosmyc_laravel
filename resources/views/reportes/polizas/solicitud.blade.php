@@ -222,7 +222,7 @@ h6{
     <h6 class="title">OBSERVACIONES</h6>
     <div class="ribbon bg-maroon"></div>
     @foreach($observaciones as $observacion)
-    <span style="color: black; font-size: 10px">{{$observacion->observaciones}}</span>
+    <span style="color: black; font-size: 10px">{!! $observacion->observaciones !!}</span>
     <br/>
     @endforeach
   </div>

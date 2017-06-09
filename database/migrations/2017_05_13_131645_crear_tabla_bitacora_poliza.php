@@ -19,7 +19,7 @@ class CrearTablaBitacoraPoliza extends Migration
             $table->integer('poliza_id')->unsigned();
             $table->integer('poliza_inclusion_id')->unsigned()->nullable();
             $table->integer('poliza_exclusion_id')->unsigned()->nullable();
-            $table->integer('estado_poliza')->unsigned();
+            $table->string('estado_poliza',1);
             $table->timestamps();
             $table->string('created_by',45);
             $table->string('updated_by',45);

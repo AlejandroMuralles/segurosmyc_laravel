@@ -18,4 +18,12 @@ class BitacoraPolizaRepo extends BaseRepo{
 						->get();
 	}
 
+	public function getByPolizaByEstadoPoliza($polizaId, $estados)
+	{
+		return BitacoraPoliza::where('poliza_id',$polizaId)
+						->whereIn('estado_poliza',$estados)
+						->orderBy('created_at', 'DESC')
+						->get();
+	}
+
 }

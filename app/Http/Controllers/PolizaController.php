@@ -574,7 +574,7 @@ class PolizaController extends BaseController {
 		$vehiculos = $this->polizaVehiculoRepo->getByPoliza($polizaId);
 		$coberturasGenerales = $this->polizaCoberturaRepo->getByPolizaByEstado($polizaId, ['P']);
 		$coberturasParticulares = $this->polizaCoberturaVehiculoRepo->getByPolizaByEstado($polizaId, ['P']);
-		$observaciones = $this->bitacoraPolizaRepo->getByPoliza($polizaId);
+		$observaciones = $this->bitacoraPolizaRepo->getByPolizaByEstadoPoliza($polizaId, [$poliza->estado]);
 		$pdf = PDF::loadView('reportes/polizas/solicitud', compact('poliza','vehiculos','coberturasGenerales','coberturasParticulares','observaciones'));
 		return $pdf->download($poliza->numero_solicitud.' - '. strtoupper($poliza->cliente->nombre).'.pdf');
 		//return view('reportes/polizas/solicitud', compact('poliza','vehiculos','coberturasGenerales','coberturasParticulares','observaciones'));
