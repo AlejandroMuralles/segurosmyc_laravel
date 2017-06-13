@@ -34,7 +34,9 @@ class BancoController extends BaseController {
 
 	public function agregar()
 	{
-		$manager = new BancoManager(new Banco(), Input::all());
+		$data = Input::all();
+		$data['estado'] = 'A';
+		$manager = new BancoManager(new Banco(), $data);
 		$manager->save();
 		Session::flash('success', 'Se agregó el banco '.Input::get('nombre').' con éxito.');
 		return Redirect::route('bancos');
@@ -48,7 +50,9 @@ class BancoController extends BaseController {
 	public function editar($id)
 	{
 		$banco = $this->bancoRepo->find($id);
-		$manager = new BancoManager($banco, Input::all());
+		$data = Input::all();
+		$data['estado'] = $banco->estado;
+		$manager = new BancoManager($banco, $data);
 		$manager->save();
 		Session::flash('success', 'Se editó el banco '.$banco->nombre.' con éxito.');
 		return Redirect::route('bancos');
