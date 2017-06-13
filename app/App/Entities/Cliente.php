@@ -5,7 +5,7 @@ namespace App\App\Entities;
 use Variable;
 
 class Cliente extends \Eloquent {
-	protected $fillable = ['nombre','nit','pais_fiscal_id','departamento_fiscal_id','municipio_fiscal_id','direccion_fiscal','zona_fiscal','nombre_facturacion','pais_facturacion_id','departamento_facturacion_id','municipio_facturacion_id','direccion_facturacion','zona_facturacion','pais_correspondencia_id','departamento_correspondencia_id','municipio_correspondencia_id','direccion_correspondencia','zona_correspondencia','representante_legal','dpi','telefonos','correo','fecha_nacimiento','consorcio_id','tipo_cliente','profesion','tipo_actividad','genero','oficio'];
+	protected $fillable = ['nombre','nit','pais_fiscal_id','departamento_fiscal_id','municipio_fiscal_id','direccion_fiscal','zona_fiscal','nombre_facturacion','pais_facturacion_id','departamento_facturacion_id','municipio_facturacion_id','direccion_facturacion','zona_facturacion','pais_correspondencia_id','departamento_correspondencia_id','municipio_correspondencia_id','direccion_correspondencia','zona_correspondencia','representante_legal','dpi','telefonos','correo','fecha_nacimiento','consorcio_id','tipo_cliente','profesion','tipo_actividad','genero','oficio','nit_facturacion'];
 
 	protected $table = 'cliente';
 

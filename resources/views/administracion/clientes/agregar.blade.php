@@ -40,7 +40,8 @@
 
 			<div class="row">
 				<h3>Datos de Facturación</h3>
-				<div class="col-lg-12">{!! Field::text('nombre_facturacion', null, ['data-required'=>'true']) !!}</div>
+				<div class="col-lg-9">{!! Field::text('nombre_facturacion', null, ['data-required'=>'true']) !!}</div>
+				<div class="col-lg-3">{!! Field::text('nit_facturacion', null, ['data-required'=>'true']) !!}</div>
 				<div class="col-lg-4">{!! Field::select('pais_facturacion_id', $paises, null, ['id'=>'pais_facturacion_id', 'data-required'=>'true']) !!}</div>
 				<div class="col-lg-4">{!! Field::select('departamento_facturacion_id', [], null, ['id'=>'departamento_facturacion_id', 'data-required'=>'true']) !!}</div>
 				<div class="col-lg-4">{!! Field::select('municipio_facturacion_id', [], null, ['id'=>'municipio_facturacion_id', 'data-required'=>'true']) !!}</div>
