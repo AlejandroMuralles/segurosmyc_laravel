@@ -52,6 +52,7 @@ class ClienteController extends BaseController {
 	{
 		$data = Input::all();
 		$data['tipo_cliente'] = $tipoCliente;
+		$data['estado'] = 'A';
 		$manager = new ClienteManager(new Cliente(), $data);
 		$manager->save();
 		Session::flash('success', 'Se agregó el cliente con éxito.');
@@ -71,7 +72,9 @@ class ClienteController extends BaseController {
 	public function editar($id)
 	{
 		$cliente = $this->clienteRepo->find($id);
-		$manager = new ClienteManager($cliente, Input::all());
+		$data = Input::all();
+		$data['estado']  =$cliente->estado;
+		$manager = new ClienteManager($cliente, $data);
 		$manager->save();
 		Session::flash('success', 'Se editó el cliente con éxito.');
 		return Redirect::route('clientes');

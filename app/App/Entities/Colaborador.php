@@ -5,7 +5,7 @@ use Variable;
 
 class Colaborador extends \Eloquent {
 
-	protected $fillable = ['nombres', 'apellidos', 'dpi','telefono','puesto_id','sexo','foto','fecha_nacimiento','contratado','celular','email','horario_entrada','dias_vacaciones','fecha_ingreso','fecha_salida','motivo_salida','sueldo_base'];
+	protected $fillable = ['nombres', 'apellidos', 'dpi','telefono','puesto_id','sexo','foto','fecha_nacimiento','contratado','celular','email','horario_entrada','dias_vacaciones','fecha_ingreso','fecha_salida','motivo_salida','sueldo_base','estado'];
 
 	protected $table = 'colaborador';
 
