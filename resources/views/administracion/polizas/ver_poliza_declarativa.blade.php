@@ -588,7 +588,7 @@
 				    <div class="col-lg-12">
 				        <div class="card-box">
 					        @if($poliza->estado == 'V')
-					        	<a href="{{route('agregar_poliza_reclamo',$poliza->id)}}" class="btn btn-primary">Agregar Reclamo</a>
+					        	<a href="{{route('agregar_poliza_vehiculo_reclamo',$poliza->id)}}" class="btn btn-primary">Agregar Reclamo</a>
 					        	<br/><br/>
 					        @endif
 				            <div class="table-responsive">
