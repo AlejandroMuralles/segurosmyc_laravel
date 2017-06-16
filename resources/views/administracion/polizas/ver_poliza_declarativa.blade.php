@@ -716,25 +716,6 @@
     </div>
     {!! Form::close() !!}
 </div>
-<div id="rechazar-reclamo-modal" class="modal-demo">
-    <button type="button" class="close" onclick="Custombox.close();">
-        <span>x</span><span class="sr-only">Cerrar</span>
-    </button>
-    <h4 class="custom-modal-title">Rechazar Solicitud de Reclamo</h4>
-    {!! Form::open(['route' => array('rechazar_poliza_reclamo'), 'method' => 'PUT', 'id' => 'rechazarReclamoForm', 'class' => 'validate-form']) !!}
-    <input type="hidden" value="0" id="reclamoId" name="reclamo_id">
-    <div class="custom-modal-text" id="text-rechazar-reclamo">
-    		
-    </div>
-    <div class="custom-modal-text">
-    	{!! Field::text('motivo_rechazo', null, ['data-required'=>'true']) !!}
-    </div>   	
-    <div class="modal-footer">
-    	<button type="submit" class="btn btn-danger">Rechazar</button>
-    	<button type="button" class="btn btn-primary" onclick="Custombox.close()">Cerrar</button>
-    </div>
-    {!! Form::close() !!}
-</div>
 @stop
 @section('js')
 <script src="{{ asset('assets/plugins/custombox/dist/custombox.min.js') }}"></script>
