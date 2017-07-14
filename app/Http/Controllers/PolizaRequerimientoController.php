@@ -178,7 +178,7 @@ class PolizaRequerimientoController extends BaseController {
 	{
 		$motivos = $this->motivoAnulacionRepo->lists('nombre','id');
 		$estado = ['N'];
-		$fecha = date('Y-m-d');
+		$fecha = date('Y-m-d', strtotime('+15 days', time()));
 		$requerimientos = $this->polizaRequerimientoRepo->getByEstadoBeforeFechaCobroByEstadoPoliza($estado, $fecha, ['V']);
 		return View::make('administracion/poliza_requerimientos/pendientes', compact('requerimientos'));
 	}

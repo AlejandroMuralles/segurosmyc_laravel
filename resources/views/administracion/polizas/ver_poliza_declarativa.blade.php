@@ -588,7 +588,7 @@
 				    <div class="col-lg-12">
 				        <div class="card-box">
 					        @if($poliza->estado == 'V')
-					        	<a href="{{route('agregar_poliza_reclamo',$poliza->id)}}" class="btn btn-primary">Agregar Reclamo</a>
+					        	<a href="{{route('agregar_poliza_vehiculo_reclamo',$poliza->id)}}" class="btn btn-primary">Agregar Reclamo</a>
 					        	<br/><br/>
 					        @endif
 				            <div class="table-responsive">
@@ -712,25 +712,6 @@
     </div>
     <div class="modal-footer">
     	<button type="submit" class="btn btn-danger">Eliminar</button>
-    	<button type="button" class="btn btn-primary" onclick="Custombox.close()">Cerrar</button>
-    </div>
-    {!! Form::close() !!}
-</div>
-<div id="rechazar-reclamo-modal" class="modal-demo">
-    <button type="button" class="close" onclick="Custombox.close();">
-        <span>x</span><span class="sr-only">Cerrar</span>
-    </button>
-    <h4 class="custom-modal-title">Rechazar Solicitud de Reclamo</h4>
-    {!! Form::open(['route' => array('rechazar_poliza_reclamo'), 'method' => 'PUT', 'id' => 'rechazarReclamoForm', 'class' => 'validate-form']) !!}
-    <input type="hidden" value="0" id="reclamoId" name="reclamo_id">
-    <div class="custom-modal-text" id="text-rechazar-reclamo">
-    		
-    </div>
-    <div class="custom-modal-text">
-    	{!! Field::text('motivo_rechazo', null, ['data-required'=>'true']) !!}
-    </div>   	
-    <div class="modal-footer">
-    	<button type="submit" class="btn btn-danger">Rechazar</button>
     	<button type="button" class="btn btn-primary" onclick="Custombox.close()">Cerrar</button>
     </div>
     {!! Form::close() !!}
