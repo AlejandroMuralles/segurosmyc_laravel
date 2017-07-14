@@ -39,7 +39,11 @@ class PolizaCoberturaVehiculoRepo extends BaseRepo{
 
 	public function getCoberturasByPolizaByVehiculoByEstado($polizaId, $vehiculoId, $estados)
 	{
-		return PolizaCoberturaVehiculo::where('poliza_id','=',$polizaId)->whereIn('estado',$estados)->with('cobertura')->groupBy('cobertura_id')->get();
+		return PolizaCoberturaVehiculo::where('poliza_id','=',$polizaId)
+				->whereIn('estado',$estados)
+				->where('vehiculo_id',$vehiculoId)
+				->with('cobertura')
+				->get();
 	}
 
 	public function getByInclusion($polizaInclusionId)
