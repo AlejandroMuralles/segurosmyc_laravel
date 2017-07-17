@@ -30,7 +30,9 @@ class MarcaVehiculoController extends BaseController {
 
 	public function agregar()
 	{
-		$manager = new MarcaVehiculoManager(new MarcaVehiculo(), Input::all());
+		$data = Input::all();
+		$data['estado'] = 'A';
+		$manager = new MarcaVehiculoManager(new MarcaVehiculo(), $data);
 		$manager->save();
 		Session::flash('success', 'Se agregó el marca de vehículo con éxito.');
 		return Redirect::route('marcas_vehiculos');
@@ -44,7 +46,9 @@ class MarcaVehiculoController extends BaseController {
 	public function editar($id)
 	{
 		$marcaVehiculo = $this->marcaVehiculoRepo->find($id);
-		$manager = new MarcaVehiculoManager($marcaVehiculo, Input::all());
+		$data = Input::all();
+		$data['estado'] = 'A';
+		$manager = new MarcaVehiculoManager($marcaVehiculo, $data);
 		$manager->save();
 		Session::flash('success', 'Se editó el marca de vehiculo con éxito.');
 		return Redirect::route('marcas_vehiculos');
