@@ -111,10 +111,12 @@
 				        	<a href="{{ route('agregar_poliza_vehiculo',$poliza->id) }}" class="btn btn-primary">Agregar Vehiculo</a>
 				        	<a href="{{ route('agregar_poliza_vehiculos',$poliza->id) }}" class="btn btn-primary">Agregar Varios Vehiculos</a>
 				        	<br/></br>
+				        	<h4>Cantidad de Vehículos: {{count($vehiculos)}} </h4>
 				            <div class="table-responsive">
 				                <table id="table" class="table">
 									<thead>
 										<tr>
+											<th></th>
 											<th>ESTADO</th>
 											<th>PLACA</th>
 											<th>S. ASEG.</th>
@@ -133,12 +135,13 @@
 											$totalPrimaNeta = 0; 
 											$totalPrimaTotal = 0; 
 										?>
-										@foreach($vehiculos as $vehiculo)
+										@foreach($vehiculos as $index => $vehiculo)
 											<?php 
 												$totalPrimaNeta += $vehiculo->prima_neta; 
 												$totalPrimaTotal += $vehiculo->prima_total; 
 											?>	
 											<tr>
+												<td class="text-center">{{ $index+1 }}</td>
 												<td>{{ $vehiculo->descripcion_estado }}</td>
 												<td>{{ $vehiculo->vehiculo->placa }}</td>
 												<td>Q. {{ number_format($vehiculo->suma_asegurada,2) }}</td>

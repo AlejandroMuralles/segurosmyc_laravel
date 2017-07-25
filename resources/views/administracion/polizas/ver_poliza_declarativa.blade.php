@@ -133,10 +133,12 @@
                 <div class="row">
 				    <div class="col-lg-12">
 				        <div class="card-box">
+				        	<h4>Cantidad de Vehículos: {{count($vehiculos)}} </h4>
 				            <div class="table-responsive">
 				                <table id="table" class="table">
 									<thead>
 										<tr>
+											<th></th>
 											<th class="text-center">ESTADO</th>
 											<th class="text-center">CERTIFICADO</th>
 											<th class="text-center">PLACA</th>
@@ -157,12 +159,13 @@
 											$totalPrimaNeta = 0; 
 											$totalPrimaTotal = 0; 
 										?>
-										@foreach($vehiculos as $vehiculo)
+										@foreach($vehiculos as $index => $vehiculo)
 											<?php 
 												$totalPrimaNeta += $vehiculo->prima_neta; 
 												$totalPrimaTotal += $vehiculo->prima_total; 
 											?>	
 											<tr>
+												<td class="text-center">{{ $index+1 }}</td>
 												<td class="text-center">{{ $vehiculo->descripcion_estado }}</td>
 												<td class="text-center">{{ $vehiculo->numero_certificado }}</td>
 												<td class="text-center">{{ $vehiculo->vehiculo->placa }}</td>
