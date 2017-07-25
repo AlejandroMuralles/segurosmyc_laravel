@@ -205,6 +205,7 @@
 												<td></td>
 												<td></td>
 												<td></td>
+												<td></td>
 												<td class="text-right bold">Q. {{ number_format($totalPrimaNeta,2) }}</td>
 												<td></td>
 												<td></td>
