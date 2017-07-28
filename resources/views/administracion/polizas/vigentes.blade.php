@@ -33,6 +33,7 @@ tfoot.search {
 							<th>ASEGURADORA</th>
 							<th>CLIENTE</th>
 							<th>CONSORCIO</th>
+							<th>DUEÑO</th>
 							<th>RAMO</th>
 							<th>TIPO PAGO</th>
 							<th>DIAS RENOVACION</th>
@@ -46,6 +47,7 @@ tfoot.search {
 							<th class="searchField">ASEGURADORA</th>
 							<th class="searchField">CLIENTE</th>
 							<th class="searchField">CONSORCIO</th>
+							<th class="searchField">DUEÑO</th>
 							<th class="searchField">RAMO</th>
 							<th class="searchField">TIPO PAGO</th>
 							<th></th>
@@ -64,6 +66,7 @@ tfoot.search {
 										{{$poliza->cliente->consorcio->nombre}}
 									@endif
 								</td>
+								<td>{{ $poliza->dueno->nombre }}</td>
 								<td>{{ $poliza->ramo->nombre }}</td>
 								<td>{{ $poliza->tipo_pago_poliza }}</td>
 								<td>{{ $poliza->dias_renovacion }}</td>
