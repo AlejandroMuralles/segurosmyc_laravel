@@ -66,7 +66,7 @@ tfoot.search {
 										{{$poliza->cliente->consorcio->nombre}}
 									@endif
 								</td>
-								<td>{{ $poliza->dueno->nombre }}</td>
+								<td>{{ $poliza->dueno->nombre_completo }}</td>
 								<td>{{ $poliza->ramo->nombre }}</td>
 								<td>{{ $poliza->tipo_pago_poliza }}</td>
 								<td>{{ $poliza->dias_renovacion }}</td>

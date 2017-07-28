@@ -24,6 +24,7 @@ class PolizaRepo extends BaseRepo{
 					->with('cliente')
 					->with('ramo')
 					->with('cliente.consorcio')
+					->with('dueno')
 					->where('estado','=',$estado)->get();
 	}
 
