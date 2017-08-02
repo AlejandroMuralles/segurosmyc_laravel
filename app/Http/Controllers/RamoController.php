@@ -30,9 +30,11 @@ class RamoController extends BaseController {
 
 	public function agregar()
 	{
-		$manager = new RamoManager(new Ramo(), Input::all());
+		$data = Input::all();
+		$data['estado'] = 'A';
+		$manager = new RamoManager(new Ramo(), $data);
 		$manager->save();
-		Session::flash('success', 'Se agregó el ramo con éxito.');
+		Session::flash('success', 'Se agregó el ramo '.$data['nombre'].' con éxito.');
 		return Redirect::route('ramos');
 	}
 
@@ -43,10 +45,12 @@ class RamoController extends BaseController {
 
 	public function editar($id)
 	{
+		$data = Input::all();
 		$ramo = $this->ramoRepo->find($id);
-		$manager = new RamoManager($ramo, Input::all());
+		$data['estado'] = $ramo->estado;
+		$manager = new RamoManager($ramo, $data);
 		$manager->save();
-		Session::flash('success', 'Se editó el ramo con éxito.');
+		Session::flash('success', 'Se editó el ramo '.$ramo->nombre.' con éxito.');
 		return Redirect::route('ramos');
 	}
 }
