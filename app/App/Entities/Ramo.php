@@ -6,5 +6,5 @@ class Ramo extends \Eloquent {
 
 	protected $table = 'ramo';
 
-	protected $fillable = ['nombre'];
+	protected $fillable = ['nombre','estado'];
 }

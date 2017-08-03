@@ -66,6 +66,10 @@ class PolizaManager extends BaseManager
                 $data['ruta'] = 'ver_poliza_incendio';
                 $data['ruta_solicitud'] = 'ver_solicitud_poliza_incendio';
             }
+            if($data['ramo_id'] == 9) { 
+                $data['ruta'] = 'ver_poliza';
+                $data['ruta_solicitud'] = 'ver_solicitud_poliza';
+            }
         }
 
 		return $data;

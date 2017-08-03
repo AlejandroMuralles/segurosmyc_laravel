@@ -6,7 +6,7 @@
 	<link href="{{asset('assets/css/tables.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
 	<style>
-	    @page { margin: 125px 50px; }
+	    @page { margin: 115px 50px; }
     	#header { position: fixed; left: 0px; top: -125px; right: 0px; height: 100px; text-align: center; padding-top: 10px;}
     	#footer { position: fixed; left: 0px; bottom: -100px; right: 0px; height: 75px; text-align: center; display: block; font-size: 12px}
     	#footer .page:after { content: counter(page); }
