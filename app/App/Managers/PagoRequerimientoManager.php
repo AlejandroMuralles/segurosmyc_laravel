@@ -41,11 +41,10 @@ class PagoRequerimientoManager extends BaseManager
 
         		$polizaRequerimientoRepo = new PolizaRequerimientoRepo();
         		$montoTotal = $this->data['monto'];
-        		$montoActual = $montoTotal;
+        		$montoActual = round($montoTotal,2);
         		$pago = new Pago();
         		$pago->fill($this->prepareData($this->data));
         		$pago->save();
-
         		$requerimientos = $this->data['requerimientos'];
         		foreach($requerimientos as $r)
         		{
@@ -57,24 +56,27 @@ class PagoRequerimientoManager extends BaseManager
 	        			if ($montoActual >= $polizaRequerimiento->pago_pendiente && $polizaRequerimiento->pago_pendiente > 0)
 	        			{
 	        				$pagoRequerimiento->monto = $polizaRequerimiento->pago_pendiente;
-	        				$montoActual = $montoActual - $polizaRequerimiento->pago_pendiente;
+	        				$montoActual = round($montoActual - $polizaRequerimiento->pago_pendiente,2);
 	        				$polizaRequerimiento->pago_pendiente = 0;
 	        				$polizaRequerimiento->estado = 'C';
 	        				$polizaRequerimiento->fecha_pago = $pago->fecha_pago;
 	        				$polizaRequerimiento->save();
 	        				$pagoRequerimiento->save();
+	        				//dd($pagoRequerimiento);
 	        			}
 	        			else if($montoActual > 0)
 	        			{
-	        				$pagoRequerimiento->monto = $montoActual;
-	        				$polizaRequerimiento->pago_pendiente = $polizaRequerimiento->pago_pendiente - $montoActual;
+	        				$pagoRequerimiento->monto = round($montoActual,2);
+	        				$polizaRequerimiento->pago_pendiente = round($polizaRequerimiento->pago_pendiente - $montoActual,2);
 	        				$montoActual = 0;
 	        				$polizaRequerimiento->save();
 	        				$pagoRequerimiento->save();
+	        				//dd($polizaRequerimiento);
 	        			}
 	        		}
 
         		}
+        		//dd('close');
 			\DB::commit();
 		}
 		catch(\Exception $ex)
