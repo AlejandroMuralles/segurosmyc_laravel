@@ -52,7 +52,7 @@ class UserManager
 	{
 		if(!isset($data['activo']))
 		{
-			$data['activo'] = 0;
+			//$data['activo'] = 0;
 		}
 		return $data;
 	}
@@ -63,7 +63,7 @@ class UserManager
 		$this->validate($rules);        
 		$this->entity->fill($this->prepareData($this->data));
 		$this->entity->primera_vez = 1;
-		$this->entity->activo = 1;
+		//$this->entity->activo = 1;
 		$this->entity->save();
 		
 		return true;
