@@ -61,7 +61,9 @@ class ColaboradorController extends BaseController {
 
 	public function agregar()
 	{
-		$manager = new ColaboradorManager(new Colaborador(), Input::all());
+		$data = Input::all();
+		$data['estado'] = 'A';
+		$manager = new ColaboradorManager(new Colaborador(), $data );
 		$manager->save();
 		Session::flash('success', 'Se agregó el colaborador con éxito.');
 		return Redirect::route('colaboradores');
