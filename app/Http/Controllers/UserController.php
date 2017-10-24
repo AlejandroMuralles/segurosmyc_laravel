@@ -39,7 +39,9 @@ class UserController extends BaseController {
 
 	public function agregar()
 	{
-		$manager = new UserManager(new User(), Input::all());
+		$data = Input::all();
+		$data['estado'] = 'A';
+		$manager = new UserManager(new User(), $data);
 		$manager->save();
 		return Redirect::route('usuarios');
 	}
