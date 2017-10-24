@@ -32,6 +32,13 @@ class ColaboradorManager extends BaseManager
 
 	function prepareData($data)
 	{
+		if(is_null($data['foto']))
+		{
+			if($data['sexo'] == 'F')
+				$data['foto'] = 'profile-m.png';
+			else
+				$data['foto'] = 'profile-h.png';
+		}
 		return $data;
 	}
 
