@@ -39,6 +39,7 @@ class ColaboradorManager extends BaseManager
 			else
 				$data['foto'] = 'profile-h.png';
 		}
+		$data['en_nomina'] = isset($data['en_nomina']) ? 1 : 0;
 		return $data;
 	}
 
