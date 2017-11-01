@@ -1,13 +1,8 @@
 @extends('layouts.admin')
-
 @section('title') Agregar Requerimientos a Planilla @stop
-
-@section('header') Agregar Requerimientos a Planilla @stop
-
 @section('css')
 <link href="{{asset('assets/plugins/bootstrap-datepicker/datepicker3.css')}}" rel="stylesheet">
 @stop
-
 @section('content')
 <div class="row">
     <div class="col-lg-12">
@@ -35,8 +30,9 @@
             			<tr>
             				<th></th>
             				<th class="text-center">POLIZA</th>
-            				<th class="text-center">CLIENTE</th>
-            				<th class="text-center">NUMERO</th>
+            				<th class="text-center">REQUERIMIENTO</th>
+                            <th class="text-center">FECHA COBRO</th>
+                            <th class="text-center">CLIENTE</th>
             				<th class="text-center">VALOR</th>
             			</tr>
             		</thead>
@@ -56,13 +52,14 @@
                                     {{$requerimiento->poliza->numero_solicitud}}
                                 @endif
                             </td>
-	            			<td class="text-center">{{$requerimiento->poliza->cliente->nombre}}</td>
 	            			<td class="text-center">{{$requerimiento->numero}}</td>
+                            <td class="text-center">{{$requerimiento->fecha_cobro}}</td>
+                            <td class="text-center">{{$requerimiento->poliza->cliente->nombre}}</td>
 	            			<td class="text-right">Q. {{ number_format($requerimiento->prima_total,2) }}</td>
             			</tr>
             			@endforeach
             			<tr class="bg-primary text-white">
-	            			<td colspan="4" class="text-right">TOTAL</td>
+	            			<td colspan="5" class="text-center">TOTAL</td>
 	            			<td class="text-right ">Q. {{ number_format($total,2) }}</td>
             			</tr>
             		</tbody>

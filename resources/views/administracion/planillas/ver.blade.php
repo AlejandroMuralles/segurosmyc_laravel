@@ -8,6 +8,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card-box">
+        	<a href="{{route('buscar_requerimientos_planilla',$planilla->id)}}" class="btn btn-primary fa fa-plus" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agregar Requerimientos"></a>
 			@if($planilla->tipo == 1)
         	<a href="{{route('reporte_planilla_diaria',$planilla->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Generar Planilla">
         		<img src="{{asset('assets/iconos/pdf.png')}}" width="48px" >
@@ -17,7 +18,7 @@
         		<img src="{{asset('assets/iconos/pdf.png')}}" width="48px" >
 			</a>
 			@endif
-
+			<hr>
 			<div class="table-responsive">
             	<table class="table table-responsive">
             		<thead>

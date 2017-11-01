@@ -52,7 +52,7 @@ class AdminMenuController {
 		$subMenu = new Collection();
 		$subMenu->push((object)['title' => 'No Cobrado por Mes', 'url' => URL::route('requerimientos_no_cobrados_mes')]);
 		$subMenu->push((object)['title' => 'Planillas', 'url' => URL::route('planillas',0)]);
-		$subMenu->push((object)['title' => 'Requerimientos Pendientes', 'url' => URL::route('requerimientos_pendientes')]);
+		$subMenu->push((object)['title' => 'Requerimientos Pendientes', 'url' => URL::route('requerimientos_pendientes',[0,0])]);
 		$menu->push((object)['title' => 'Cobros', 'url' => '#', 'subMenu'=> $subMenu, 'icon'=>'fa fa-credit-card-alt']);
 
 		$subMenu = new Collection();

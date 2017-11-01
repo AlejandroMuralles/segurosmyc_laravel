@@ -16,6 +16,8 @@ use App\App\Repositories\MotivoAnulacionRepo;
 
 use App\App\Repositories\PolizaDeclaracionRepo;
 use App\App\Repositories\ClienteRepo;
+use App\App\Repositories\AseguradoraRepo;
+use App\App\Repositories\RamoRepo;
 
 class PolizaRequerimientoController extends BaseController {
 
@@ -27,9 +29,11 @@ class PolizaRequerimientoController extends BaseController {
 	protected $motivoAnulacionRepo;
 	protected $polizaDeclaracionRepoRepo;
 	protected $clienteRepo;
+	protected $aseguradoraRepo;
+	protected $ramoRepo;
 
 	public function __construct(PolizaRequerimientoRepo $polizaRequerimientoRepo, PolizaRepo $polizaRepo, PolizaInclusionRepo $polizaInclusionRepo, PorcentajeFraccionamientoGeneralRepo $pfgRepo,
-			PorcentajeFraccionamientoAseguradoraRepo $pfaRepo, MotivoAnulacionRepo $motivoAnulacionRepo, PolizaDeclaracionRepo $polizaDeclaracionRepo, ClienteRepo $clienteRepo)
+			PorcentajeFraccionamientoAseguradoraRepo $pfaRepo, MotivoAnulacionRepo $motivoAnulacionRepo, PolizaDeclaracionRepo $polizaDeclaracionRepo, ClienteRepo $clienteRepo, AseguradoraRepo $aseguradoraRepo, RamoRepo $ramoRepo)
 	{
 		$this->polizaRequerimientoRepo = $polizaRequerimientoRepo;
 		$this->polizaRepo = $polizaRepo;
@@ -39,6 +43,8 @@ class PolizaRequerimientoController extends BaseController {
 		$this->motivoAnulacionRepo = $motivoAnulacionRepo;
 		$this->polizaDeclaracionRepo = $polizaDeclaracionRepo;
 		$this->clienteRepo = $clienteRepo;
+		$this->aseguradoraRepo = $aseguradoraRepo;
+		$this->ramoRepo = $ramoRepo;
 
 		View::composer('layouts.admin', 'App\Http\Controllers\AdminMenuController');
 	}
@@ -174,13 +180,27 @@ class PolizaRequerimientoController extends BaseController {
 		return Redirect::to($url);
 	}
 
-	public function mostrarPendientes()
+	public function mostrarPendientes($aseguradoraId, $ramoId)
 	{
+		$aseguradoras = $this->aseguradoraRepo->lists('nombre','id');
+		$ramos = $this->ramoRepo->lists('nombre','id');
 		$motivos = $this->motivoAnulacionRepo->lists('nombre','id');
 		$estado = ['N'];
 		$fecha = date('Y-m-d', strtotime('+15 days', time()));
-		$requerimientos = $this->polizaRequerimientoRepo->getByEstadoBeforeFechaCobroByEstadoPoliza($estado, $fecha, ['V']);
-		return View::make('administracion/poliza_requerimientos/pendientes', compact('requerimientos'));
+		$requerimientos = [];
+		if($aseguradoraId == 0 && $ramoId == 0){
+			$requerimientos = $this->polizaRequerimientoRepo->getByEstadoBeforeFechaCobroByEstadoPoliza($estado, $fecha, ['V']);
+		}
+		if($aseguradoraId != 0 && $ramoId == 0){
+			$requerimientos = $this->polizaRequerimientoRepo->getByEstadoBeforeFechaCobroByEstadoPolizaByAseguradora($estado, $fecha, ['V'], $aseguradoraId);
+		}
+		if($aseguradoraId == 0 && $ramoId != 0){
+			$requerimientos = $this->polizaRequerimientoRepo->getByEstadoBeforeFechaCobroByEstadoPolizaByRamo($estado, $fecha, ['V'], $ramoId);
+		}
+		if($aseguradoraId != 0 && $ramoId != 0){
+			$requerimientos = $this->polizaRequerimientoRepo->getByEstadoBeforeFechaCobroByEstadoPolizaByAseguradoraByRamo($estado, $fecha, ['V'], $aseguradoraId, $ramoId);
+		}
+		return View::make('administracion/poliza_requerimientos/pendientes', compact('requerimientos','aseguradoras','ramos','aseguradoraId','ramoId'));
 	}
 
 	public function anular()

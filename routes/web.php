@@ -455,7 +455,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::put('Polizas-Requerimientos/editar/{id}', ['as' => 'editar_poliza_requerimiento', 'uses' => 'PolizaRequerimientoController@editar']);
 	Route::put('Polizas-Requerimientos/anular', ['as' => 'anular_poliza_requerimiento', 'uses' => 'PolizaRequerimientoController@anular']);
 	Route::delete('Polizas-Requerimientos/eliminar', ['as' => 'eliminar_poliza_requerimiento', 'uses' => 'PolizaRequerimientoController@eliminar']);
-	Route::get('Polizas-Requerimientos/pendientes', ['as' => 'requerimientos_pendientes', 'uses' => 'PolizaRequerimientoController@mostrarPendientes']);
+	Route::get('Polizas-Requerimientos/pendientes/{aseguradora}/{rubro}', ['as' => 'requerimientos_pendientes', 'uses' => 'PolizaRequerimientoController@mostrarPendientes']);
 	Route::get('Polizas-Requerimientos/no-cobrados-mes', ['as' => 'requerimientos_no_cobrados_mes', 'uses' => 'PolizaRequerimientoController@mostrarNoCobradosPorMes']);
 
 	Route::get('Pago-Requerimiento/agregar/{polizaId}', ['as' => 'agregar_pago_requerimiento', 'uses' => 'PagoRequerimientoController@mostrarAgregar']);

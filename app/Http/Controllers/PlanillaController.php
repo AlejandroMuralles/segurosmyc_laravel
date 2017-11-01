@@ -59,8 +59,14 @@ class PlanillaController extends BaseController {
 		$planilla = $this->planillaRepo->find($planillaId);
 		$fechaInicio = $planilla->fecha;
 		$fechaFinal = $planilla->fecha;
-		$requerimientos = $this->polizaRequerimientoRepo->getByAseguradoraBetweenFechaCobroByEstadoNotInPlanilla(
-																	$planilla->aseguradora_id,$fechaInicio,$fechaFinal,['C']);
+		if($planilla->tipo == 1)
+			$requerimientos = $this->polizaRequerimientoRepo->getByAseguradoraBetweenFechaCobroByEstadoNotInPlanilla(
+					$planilla->aseguradora_id,$fechaInicio,$fechaFinal,['C']
+				);
+		if($planilla->tipo == 2)
+			$requerimientos = $this->polizaRequerimientoRepo->getByPolizaBetweenFechaCobroByEstadoNotInPlanilla(
+					$planilla->poliza_id,$fechaInicio,$fechaFinal,['C']
+				);
 		return View::make('administracion/planillas/buscar',compact('planilla','fechaInicio','fechaFinal','requerimientos'));
 	}
 
@@ -71,10 +77,12 @@ class PlanillaController extends BaseController {
 		$fechaFinal = Input::get('fecha_final');
 		if($planilla->tipo == 1)
 			$requerimientos = $this->polizaRequerimientoRepo->getByAseguradoraBetweenFechaCobroByEstadoNotInPlanilla(
-																	$planilla->aseguradora_id,$fechaInicio,$fechaFinal,['C']);
+					$planilla->aseguradora_id,$fechaInicio,$fechaFinal,['C']
+				);
 		if($planilla->tipo == 2)
 			$requerimientos = $this->polizaRequerimientoRepo->getByPolizaBetweenFechaCobroByEstadoNotInPlanilla(
-																	$planilla->poliza_id,$fechaInicio,$fechaFinal,['C']);
+					$planilla->poliza_id,$fechaInicio,$fechaFinal,['C']
+				);
 		return View::make('administracion/planillas/buscar',compact('planilla','fechaInicio','fechaFinal','requerimientos'));
 	}
 

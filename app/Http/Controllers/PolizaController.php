@@ -643,7 +643,7 @@ class PolizaController extends BaseController {
 			$poliza['FECHA FIN'] = date('d/m/y', strtotime($polizaDB->fecha_fin));
 			$poliza['ASEGURADORA'] = $polizaDB->aseguradora->nombre;
 			$poliza['RAMO'] = $polizaDB->ramo->nombre;			
-			$poliza['DIAS VENCIDAS'] = $polizaDB->dias_desde_solicitud;
+			$poliza['DIAS VENCIDAS'] = $polizaDB->dias_renovacion;
 			$polizas[] = $poliza;
 		}
 		Excel::create('Polizas Vigentes Vencidas', function($excel) use ($polizas) {

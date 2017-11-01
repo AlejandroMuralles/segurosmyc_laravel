@@ -40,6 +40,7 @@
 				        <div class="card-box">
 				        	<div class="row">
 				        		<div class="col-lg-12">
+				        			<a href="{{route('aprobar_solicitud_poliza',$poliza->id)}}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Aprobar"><i class="fa fa-check"></i></a>
 				        			<a href="{{route('editar_poliza',$poliza->id)}}" class="btn btn-warning">Editar</a>
 				        			@if(is_null($poliza->poliza_anterior_id))
 				        			<a href="{{route('polizas_reporte_solicitud',$poliza->id)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Generar Solicitud">

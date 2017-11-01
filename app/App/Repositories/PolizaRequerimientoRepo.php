@@ -39,26 +39,87 @@ class PolizaRequerimientoRepo extends BaseRepo{
 									->where('fecha_cobro','<=',$fecha)
 									->whereHas('poliza',function($q) use ($estadosPoliza) {
 										$q->with('aseguradora');
+										$q->with('ramo');
 										$q->whereIn('estado',$estadosPoliza);
 									})
 									->with('poliza')
 									->with('poliza.aseguradora')
+									->with('poliza.ramo')
 									->with('poliza.cliente')
 									->orderBy('fecha_cobro','ASC')
 									->get();
 	}
 
+	public function getByEstadoBeforeFechaCobroByEstadoPolizaByAseguradora($estados, $fecha, $estadosPoliza, $aseguradoraId)
+	{
+		return PolizaRequerimiento::whereIn('estado',$estados)
+			->where('fecha_cobro','<=',$fecha)
+			->whereHas('poliza',function($q) use ($estadosPoliza,$aseguradoraId)
+			{
+				$q->where('aseguradora_id',$aseguradoraId);
+				$q->with('aseguradora');
+				$q->with('ramo');
+				$q->whereIn('estado',$estadosPoliza);
+			})
+			->with('poliza')
+			->with('poliza.aseguradora')
+			->with('poliza.ramo')
+			->with('poliza.cliente')
+			->orderBy('fecha_cobro','ASC')
+			->get();
+	}
+
+	public function getByEstadoBeforeFechaCobroByEstadoPolizaByRamo($estados, $fecha, $estadosPoliza, $ramoId)
+	{
+		return PolizaRequerimiento::whereIn('estado',$estados)
+					->where('fecha_cobro','<=',$fecha)
+					->whereHas('poliza',function($q) use ($estadosPoliza,$ramoId)
+					{
+						$q->where('ramo_id',$ramoId);
+						$q->with('aseguradora');
+						$q->with('ramo');
+						$q->whereIn('estado',$estadosPoliza);
+					})
+					->with('poliza')
+					->with('poliza.aseguradora')
+					->with('poliza.ramo')
+					->with('poliza.cliente')
+					->orderBy('fecha_cobro','ASC')
+					->get();
+	}
+
+	public function getByEstadoBeforeFechaCobroByEstadoPolizaByAseguradoraByRamo($estados, $fecha, $estadosPoliza, $aseguradoraId, $ramoId)
+	{
+		return PolizaRequerimiento::whereIn('estado',$estados)
+			->where('fecha_cobro','<=',$fecha)
+			->whereHas('poliza', function($q) use ($estadosPoliza, $aseguradoraId, $ramoId)
+			{
+				$q->where('aseguradora_id',$aseguradoraId);
+				$q->where('ramo_id',$ramoId);
+				$q->with('aseguradora');
+				$q->with('ramo');
+				$q->whereIn('estado',$estadosPoliza);
+			})
+			->with('poliza')
+			->with('poliza.aseguradora')
+			->with('poliza.ramo')
+			->with('poliza.cliente')
+			->orderBy('fecha_cobro','ASC')
+			->get();
+	}
+
 	public function getByAseguradoraBetweenFechaCobroByEstadoNotInPlanilla($aseguradoraId, $fechaInicio, $fechaFin, $estados)
 	{
 		return PolizaRequerimiento::whereIn('estado',$estados)
-									->whereBetween('fecha_cobro',[$fechaInicio, $fechaFin])
-									->whereHas('poliza',function($q) use ($aseguradoraId) {
-										$q->where('aseguradora_id',$aseguradoraId);
-									})
-									->with('poliza')
-									->whereNull('planilla_id')
-									->orderBy('fecha_cobro','ASC')
-									->get();
+				->whereBetween('fecha_cobro',[$fechaInicio, $fechaFin])
+				->whereHas('poliza',function($q) use ($aseguradoraId) {
+					$q->where('aseguradora_id',$aseguradoraId);
+				})
+				->with('poliza')
+				->whereNull('planilla_id')
+				->with('poliza.cliente')
+				->orderBy('fecha_cobro','ASC')
+				->get();
 	}
 
 	public function getByPolizaBetweenFechaCobroByEstadoNotInPlanilla($polizaId, $fechaInicio, $fechaFin, $estados)
